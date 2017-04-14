@@ -2153,7 +2153,7 @@ func handleGetCFilter(s *rpcServer, cmd interface{}, closeChan <-chan struct{}) 
 		rpcsLog.Debugf("Found committed filter for %v", hash)
 	} else {
 		rpcsLog.Debugf("Could not find committed filter for %v: %v",
-		    hash, err)
+			hash, err)
 		return nil, &btcjson.RPCError{
 			Code:    btcjson.ErrRPCBlockNotFound,
 			Message: "Block not found",
@@ -2176,14 +2176,15 @@ func handleGetCFilterHeader(s *rpcServer, cmd interface{}, closeChan <-chan stru
 		rpcsLog.Debugf("Found header of committed filter for %v", hash)
 	} else {
 		rpcsLog.Debugf("Could not find header of committed filter for %v: %v",
-		    hash, err)
+			hash, err)
 		return nil, &btcjson.RPCError{
 			Code:    btcjson.ErrRPCBlockNotFound,
 			Message: "Block not found",
 		}
 	}
 
-	return hex.EncodeToString(headerBytes), nil
+	hash.SetBytes(headerBytes)
+	return hash.String(), nil
 }
 
 // handleGetConnectionCount implements the getconnectioncount command.
