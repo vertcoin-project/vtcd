@@ -251,6 +251,14 @@ func (b *BlockChain) calcNextRequiredDifficulty(lastNode *blockNode, newBlockTim
 		return lastNode.bits, nil
 	}
 
+	// Litecoin fixes an issue where a 51% can change the difficult at
+	// will. We only go back the full period unless it's the first retarget
+	// after genesis.
+	blocksPerRetarget := b.blocksPerRetarget - 1
+	if lastNode.height+1 != b.blocksPerRetarget {
+		blocksPerRetarget = b.blocksPerRetarget
+	}
+
 	// Get the block node at the previous retarget (targetTimespan days
 	// worth of blocks).
 	firstNode := lastNode.RelativeAncestor(b.blocksPerRetarget - 1)
