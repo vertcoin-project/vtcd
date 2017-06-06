@@ -1,9 +1,11 @@
 chaincfg
 ========
 
-[![Build Status](http://img.shields.io/travis/btcsuite/btcd.svg)](https://travis-ci.org/btcsuite/btcd)
-[![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
-[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)](http://godoc.org/github.com/btcsuite/btcd/chaincfg)
+[![Build Status](http://img.shields.io/travis/roasbeef/btcd.svg)]
+(https://travis-ci.org/roasbeef/btcd) [![ISC License]
+(http://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
+[![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)]
+(http://godoc.org/github.com/roasbeef/btcd/chaincfg)
 
 Package chaincfg defines chain configuration parameters for the three standard
 Bitcoin networks and provides the ability for callers to define their own custom
@@ -24,8 +26,8 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/btcsuite/btcutil"
-	"github.com/btcsuite/btcd/chaincfg"
+	"github.com/roasbeef/btcutil"
+	"github.com/roasbeef/btcd/chaincfg"
 )
 
 var testnet = flag.Bool("testnet", false, "operate on the testnet Bitcoin network")
@@ -56,7 +58,7 @@ func main() {
 ## Installation and Updating
 
 ```bash
-$ go get -u github.com/btcsuite/btcd/chaincfg
+$ go get -u github.com/roasbeef/btcd/chaincfg
 ```
 
 ## GPG Verification Key

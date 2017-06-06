@@ -1,9 +1,14 @@
 ffldb
 =====
 
+<<<<<<< HEAD
 [![Build Status](https://travis-ci.org/btcsuite/btcd.png?branch=master)](https://travis-ci.org/btcsuite/btcd)
 [![ISC License](http://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
 [![GoDoc](https://godoc.org/github.com/btcsuite/btcd/database/ffldb?status.png)](http://godoc.org/github.com/btcsuite/btcd/database/ffldb)
+=======
+[![Build Status](https://travis-ci.org/roasbeef/btcd.png?branch=master)]
+(https://travis-ci.org/roasbeef/btcd)
+>>>>>>> c7d17841... multi: update imports to roasbeef's
 
 Package ffldb implements a driver for the database package that uses leveldb for
 the backing metadata and flat files for block storage.
@@ -34,6 +39,22 @@ if err != nil {
 }
 ```
 
+<<<<<<< HEAD
+=======
+## Documentation
+
+[![GoDoc](https://godoc.org/github.com/roasbeef/btcd/database/ffldb?status.png)]
+(http://godoc.org/github.com/roasbeef/btcd/database/ffldb)
+
+Full `go doc` style documentation for the project can be viewed online without
+installing this package by using the GoDoc site here:
+http://godoc.org/github.com/roasbeef/btcd/database/ffldb
+
+You can also view the documentation locally once the package is installed with
+the `godoc` tool by running `godoc -http=":6060"` and pointing your browser to
+http://localhost:6060/pkg/github.com/roasbeef/btcd/database/ffldb
+
+>>>>>>> c7d17841... multi: update imports to roasbeef's
 ## License
 
 Package ffldb is licensed under the [copyfree](http://copyfree.org) ISC

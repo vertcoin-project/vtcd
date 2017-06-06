@@ -14,8 +14,13 @@ import (
 	"runtime/debug"
 	"testing"
 
+<<<<<<< HEAD
 	"github.com/btcsuite/btcd/chaincfg"
 	"github.com/btcsuite/btcd/integration/rpctest"
+=======
+	"github.com/roasbeef/btcd/chaincfg"
+	"github.com/roasbeef/btcd/rpctest"
+>>>>>>> c7d17841... multi: update imports to roasbeef's
 )
 
 func testGetBestBlock(r *rpctest.Harness, t *testing.T) {
