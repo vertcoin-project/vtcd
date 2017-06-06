@@ -1,28 +1,14 @@
-hash: 460c7d3de605660ededac34870ea8fed99b4622acb2ce5f275cee7028034e785
-updated: 2017-03-17T18:17:03.660666675-06:00
+hash: 6956c25f8d735a9c937e4b7dab2d7f319e5d51b9ee82165f98ac360481b76b27
+updated: 2017-06-05T17:20:29.678065756-07:00
 imports:
 - name: github.com/aead/siphash
-  version: c12524e9e0f3f057ac288302833ea82abc583623
+  version: e404fcfc888570cadd1610538e2dbc89f66af814
 - name: github.com/btcsuite/btclog
   version: 73889fb79bd687870312b6e40effcecffbd57d30
-- name: github.com/btcsuite/btcrpcclient
-  version: e15bd09b466511d8836c4017bc4cbc2e0ff05f82
-  repo: ssh://git@github.com/companyzero/btcrpcclientln
-  vcs: git
-- name: github.com/btcsuite/btcutil
-  version: f814b35f15362b1122f55bd9034b6275552cc2f7
-  repo: ssh://git@github.com/companyzero/btcutilln
-  vcs: git
-  subpackages:
-  - base58
-  - bloom
-  - gcs
-  - gcs/builder
-  - hdkeychain
 - name: github.com/btcsuite/fastsha256
   version: 637e656429416087660c84436a2a035d69d54e2e
 - name: github.com/btcsuite/go-flags
-  version: 1679536dcc895411a9f5848d9a0250be7856448c
+  version: 6c288d648c1cc1befcb90cb5511dcacf64ae8e61
 - name: github.com/btcsuite/go-socks
   version: 4720035b7bfd2a9bb130b1c184f8bbe41b6f0d0f
   subpackages:
@@ -60,4 +46,16 @@ imports:
   - spew
 - name: github.com/jessevdk/go-flags
   version: 1679536dcc895411a9f5848d9a0250be7856448c
+- name: github.com/kkdai/bstream
+  version: f391b8402d23024e7c0f624b31267a89998fca95
+- name: github.com/roasbeef/btcrpcclient
+  version: 9a7826550df8071460e2f5dd6ed9139dcbf260b8
+- name: github.com/roasbeef/btcutil
+  version: a259eaf2ec1b54653cdd67848a41867f280797ee
+  subpackages:
+  - base58
+  - bloom
+  - gcs
+  - gcs/builder
+  - hdkeychain
 testImports: []

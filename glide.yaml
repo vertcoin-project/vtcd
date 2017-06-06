@@ -1,17 +1,13 @@
-package: github.com/btcsuite/btcd
+package: github.com/roasbeef/btcd
 import:
 - package: github.com/btcsuite/btclog
-- package: github.com/btcsuite/btcutil
-  repo: ssh://git@github.com/companyzero/btcutilln
-  vcs: git
-  version: gcs
+- package: github.com/roasbeef/btcutil
+  version: a259eaf2ec1b54653cdd67848a41867f280797ee
   subpackages:
   - bloom
   - hdkeychain
-- package: github.com/btcsuite/btcrpcclient
-  repo: ssh://git@github.com/companyzero/btcrpcclientln
-  vcs: git
-  version: pedro_cbf
+- package: github.com/roasbeef/btcrpcclient
+  version: 9a7826550df8071460e2f5dd6ed9139dcbf260b8
 - package: github.com/btcsuite/fastsha256
 - package: github.com/btcsuite/go-flags
 - package: github.com/btcsuite/go-socks
