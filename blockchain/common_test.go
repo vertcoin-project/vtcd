@@ -14,13 +14,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/Roasbeef/btcutil"
 	"github.com/roasbeef/btcd/chaincfg"
 	"github.com/roasbeef/btcd/chaincfg/chainhash"
 	"github.com/roasbeef/btcd/database"
 	_ "github.com/roasbeef/btcd/database/ffldb"
 	"github.com/roasbeef/btcd/txscript"
 	"github.com/roasbeef/btcd/wire"
+	"github.com/roasbeef/btcutil"
 )
 
 const (

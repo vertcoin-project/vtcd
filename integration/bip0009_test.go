@@ -16,7 +16,7 @@ import (
 	"github.com/roasbeef/btcd/blockchain"
 	"github.com/roasbeef/btcd/chaincfg"
 	"github.com/roasbeef/btcd/chaincfg/chainhash"
-	"github.com/roasbeef/btcd/rpctest"
+	"github.com/roasbeef/btcd/integration/rpctest"
 )
 
 const (
