@@ -2,13 +2,10 @@ package: github.com/roasbeef/btcd
 import:
 - package: github.com/btcsuite/btclog
 - package: github.com/roasbeef/btcutil
-  version: a259eaf2ec1b54653cdd67848a41867f280797ee
+  version: 4675c7e1e02d8fe1f40d1e40a71d31922e62e605
   subpackages:
   - bloom
   - hdkeychain
-- package: github.com/roasbeef/btcrpcclient
-  version: d0f4db8b4dad0ca3d569b804f21247c3dd96acbb
-- package: github.com/btcsuite/fastsha256
 - package: github.com/btcsuite/go-flags
 - package: github.com/btcsuite/go-socks
   subpackages:

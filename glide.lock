@@ -1,5 +1,5 @@
-hash: eca5a73fdae198c9ba0b90ccc4b24fd4dba9d5649f17d85b7399fede7dd26ce5
-updated: 2017-06-25T10:15:10.025396307+01:00
+hash: b1175cf2cc6189d08faa4ef9aecec97aada84d240e8f97e2e09563cb415df83e
+updated: 2017-08-24T16:08:59.276315855-07:00
 imports:
 - name: github.com/aead/siphash
   version: e404fcfc888570cadd1610538e2dbc89f66af814
@@ -56,14 +56,17 @@ imports:
   - rotator
 - name: github.com/kkdai/bstream
   version: f391b8402d23024e7c0f624b31267a89998fca95
-- name: github.com/roasbeef/btcrpcclient
-  version: d0f4db8b4dad0ca3d569b804f21247c3dd96acbb
 - name: github.com/roasbeef/btcutil
-  version: a259eaf2ec1b54653cdd67848a41867f280797ee
+  version: 4675c7e1e02d8fe1f40d1e40a71d31922e62e605
   subpackages:
   - base58
+  - bech32
   - bloom
   - gcs
   - gcs/builder
   - hdkeychain
+- name: golang.org/x/crypto
+  version: 122d919ec1efcfb58483215da23f815853e24b81
+  subpackages:
+  - ripemd160
 testImports: []
