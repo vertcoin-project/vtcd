@@ -27,8 +27,6 @@ import (
 	"sync/atomic"
 	"time"
 
-	"google.golang.org/grpc/peer"
-
 	"github.com/btcsuite/websocket"
 	"github.com/roasbeef/btcd/blockchain"
 	"github.com/roasbeef/btcd/blockchain/indexers"
@@ -40,6 +38,7 @@ import (
 	"github.com/roasbeef/btcd/mempool"
 	"github.com/roasbeef/btcd/mining"
 	"github.com/roasbeef/btcd/mining/cpuminer"
+	"github.com/roasbeef/btcd/peer"
 	"github.com/roasbeef/btcd/txscript"
 	"github.com/roasbeef/btcd/wire"
 	"github.com/roasbeef/btcutil"
@@ -2149,7 +2148,7 @@ func handleGetCFilter(s *rpcServer, cmd interface{}, closeChan <-chan struct{}) 
 		return nil, rpcDecodeHexError(c.Hash)
 	}
 
-	filterBytes, err := s.server.cfIndex.FilterByBlockHash(hash, c.Extended)
+	filterBytes, err := s.cfg.CfIndex.FilterByBlockHash(hash, c.Extended)
 	if err != nil {
 		rpcsLog.Debugf("Could not find committed filter for %v: %v",
 			hash, err)
@@ -2171,7 +2170,7 @@ func handleGetCFilterHeader(s *rpcServer, cmd interface{}, closeChan <-chan stru
 		return nil, rpcDecodeHexError(c.Hash)
 	}
 
-	headerBytes, err := s.server.cfIndex.FilterHeaderByBlockHash(hash, c.Extended)
+	headerBytes, err := s.cfg.CfIndex.FilterHeaderByBlockHash(hash, c.Extended)
 	if len(headerBytes) > 0 {
 		rpcsLog.Debugf("Found header of committed filter for %v", hash)
 	} else {
@@ -4225,6 +4224,7 @@ type rpcserverConfig struct {
 	// of to provide additional data when queried.
 	TxIndex   *indexers.TxIndex
 	AddrIndex *indexers.AddrIndex
+	CfIndex   *indexers.CfIndex
 }
 
 // newRPCServer returns a new instance of the rpcServer struct.
