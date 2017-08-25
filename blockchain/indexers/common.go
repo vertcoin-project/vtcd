@@ -10,8 +10,8 @@ package indexers
 import (
 	"encoding/binary"
 
-	"github.com/roasbeef/btcd/blockchain"
-	"github.com/roasbeef/btcd/database"
+	"github.com/ltcsuite/ltcd/blockchain"
+	"github.com/ltcsuite/ltcd/database"
 	"github.com/roasbeef/btcutil"
 )
 

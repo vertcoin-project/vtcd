@@ -5,7 +5,7 @@
 package blockchain
 
 import (
-	"github.com/roasbeef/btcd/database"
+	"github.com/ltcsuite/ltcd/database"
 	"github.com/roasbeef/btcutil"
 )
 

@@ -11,16 +11,16 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/roasbeef/btcd/addrmgr"
-	"github.com/roasbeef/btcd/blockchain"
-	"github.com/roasbeef/btcd/blockchain/indexers"
-	"github.com/roasbeef/btcd/connmgr"
-	"github.com/roasbeef/btcd/database"
-	"github.com/roasbeef/btcd/mempool"
-	"github.com/roasbeef/btcd/mining"
-	"github.com/roasbeef/btcd/mining/cpuminer"
-	"github.com/roasbeef/btcd/peer"
-	"github.com/roasbeef/btcd/txscript"
+	"github.com/ltcsuite/ltcd/addrmgr"
+	"github.com/ltcsuite/ltcd/blockchain"
+	"github.com/ltcsuite/ltcd/blockchain/indexers"
+	"github.com/ltcsuite/ltcd/connmgr"
+	"github.com/ltcsuite/ltcd/database"
+	"github.com/ltcsuite/ltcd/mempool"
+	"github.com/ltcsuite/ltcd/mining"
+	"github.com/ltcsuite/ltcd/mining/cpuminer"
+	"github.com/ltcsuite/ltcd/peer"
+	"github.com/ltcsuite/ltcd/txscript"
 	"github.com/btcsuite/btclog"
 	"github.com/jrick/logrotate/rotator"
 )
@@ -62,7 +62,7 @@ var (
 	cmgrLog = backendLog.Logger("CMGR")
 	bcdbLog = backendLog.Logger("BCDB")
 	bmgrLog = backendLog.Logger("BMGR")
-	btcdLog = backendLog.Logger("BTCD")
+	ltcdLog = backendLog.Logger("BTCD")
 	chanLog = backendLog.Logger("CHAN")
 	discLog = backendLog.Logger("DISC")
 	indxLog = backendLog.Logger("INDX")
@@ -95,7 +95,7 @@ var subsystemLoggers = map[string]btclog.Logger{
 	"CMGR": cmgrLog,
 	"BCDB": bcdbLog,
 	"BMGR": bmgrLog,
-	"BTCD": btcdLog,
+	"BTCD": ltcdLog,
 	"CHAN": chanLog,
 	"DISC": discLog,
 	"INDX": indxLog,

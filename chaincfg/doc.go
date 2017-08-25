@@ -26,7 +26,7 @@
 //          "log"
 //
 //          "github.com/roasbeef/btcutil"
-//          "github.com/roasbeef/btcd/chaincfg"
+//          "github.com/ltcsuite/ltcd/chaincfg"
 //  )
 //
 //  var testnet = flag.Bool("testnet", false, "operate on the testnet Bitcoin network")

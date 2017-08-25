@@ -1,7 +1,7 @@
-btcd Websockets Example
+ltcd Websockets Example
 =======================
 
-This example shows how to use the rpcclient package to connect to a btcd RPC
+This example shows how to use the rpcclient package to connect to a ltcd RPC
 server using TLS-secured websockets, register for block connected and block
 disconnected notifications, and get the current block count.
 
@@ -13,7 +13,7 @@ demonstrate clean shutdown.
 The first step is to use `go get` to download and install the rpcclient package:
 
 ```bash
-$ go get github.com/roasbeef/btcd/rpcclient
+$ go get github.com/ltcsuite/ltcd/rpcclient
 ```
 
 Next, modify the `main.go` source to specify the correct RPC username and
@@ -27,7 +27,7 @@ password for the RPC server:
 Finally, navigate to the example's directory and run it with:
 
 ```bash
-$ cd $GOPATH/src/github.com/roasbeef/btcd/rpcclient/examples/btcdwebsockets
+$ cd $GOPATH/src/github.com/ltcsuite/ltcd/rpcclient/examples/ltcdwebsockets
 $ go run *.go
 ```
 

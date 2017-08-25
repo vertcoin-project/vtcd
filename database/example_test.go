@@ -10,10 +10,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/roasbeef/btcd/chaincfg"
-	"github.com/roasbeef/btcd/database"
-	_ "github.com/roasbeef/btcd/database/ffldb"
-	"github.com/roasbeef/btcd/wire"
+	"github.com/ltcsuite/ltcd/chaincfg"
+	"github.com/ltcsuite/ltcd/database"
+	_ "github.com/ltcsuite/ltcd/database/ffldb"
+	"github.com/ltcsuite/ltcd/wire"
 	"github.com/roasbeef/btcutil"
 )
 
@@ -22,8 +22,8 @@ func ExampleCreate() {
 	// This example assumes the ffldb driver is imported.
 	//
 	// import (
-	// 	"github.com/roasbeef/btcd/database"
-	// 	_ "github.com/roasbeef/btcd/database/ffldb"
+	// 	"github.com/ltcsuite/ltcd/database"
+	// 	_ "github.com/ltcsuite/ltcd/database/ffldb"
 	// )
 
 	// Create a database and schedule it to be closed and removed on exit.
@@ -48,8 +48,8 @@ func Example_basicUsage() {
 	// This example assumes the ffldb driver is imported.
 	//
 	// import (
-	// 	"github.com/roasbeef/btcd/database"
-	// 	_ "github.com/roasbeef/btcd/database/ffldb"
+	// 	"github.com/ltcsuite/ltcd/database"
+	// 	_ "github.com/ltcsuite/ltcd/database/ffldb"
 	// )
 
 	// Create a database and schedule it to be closed and removed on exit.
@@ -114,8 +114,8 @@ func Example_blockStorageAndRetrieval() {
 	// This example assumes the ffldb driver is imported.
 	//
 	// import (
-	// 	"github.com/roasbeef/btcd/database"
-	// 	_ "github.com/roasbeef/btcd/database/ffldb"
+	// 	"github.com/ltcsuite/ltcd/database"
+	// 	_ "github.com/ltcsuite/ltcd/database/ffldb"
 	// )
 
 	// Create a database and schedule it to be closed and removed on exit.

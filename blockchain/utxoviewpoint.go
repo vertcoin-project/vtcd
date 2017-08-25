@@ -7,9 +7,9 @@ package blockchain
 import (
 	"fmt"
 
-	"github.com/roasbeef/btcd/chaincfg/chainhash"
-	"github.com/roasbeef/btcd/database"
-	"github.com/roasbeef/btcd/txscript"
+	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
+	"github.com/ltcsuite/ltcd/database"
+	"github.com/ltcsuite/ltcd/txscript"
 	"github.com/roasbeef/btcutil"
 )
 

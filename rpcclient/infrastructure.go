@@ -23,7 +23,7 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/roasbeef/btcd/btcjson"
+	"github.com/ltcsuite/ltcd/btcjson"
 	"github.com/btcsuite/go-socks/socks"
 	"github.com/btcsuite/websocket"
 )

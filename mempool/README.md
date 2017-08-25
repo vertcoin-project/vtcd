@@ -1,11 +1,11 @@
 mempool
 =======
 
-[![Build Status](http://img.shields.io/travis/roasbeef/btcd.svg)]
-(https://travis-ci.org/roasbeef/btcd) [![ISC License]
+[![Build Status](http://img.shields.io/travis/ltcsuite/ltcd.svg)]
+(https://travis-ci.org/ltcsuite/ltcd) [![ISC License]
 (http://img.shields.io/badge/license-ISC-blue.svg)](http://copyfree.org)
 [![GoDoc](https://img.shields.io/badge/godoc-reference-blue.svg)]
-(http://godoc.org/github.com/roasbeef/btcd/mempool)
+(http://godoc.org/github.com/ltcsuite/ltcd/mempool)
 
 Package mempool provides a policy-enforced pool of unmined bitcoin transactions.
 
@@ -76,7 +76,7 @@ be an exhaustive list.
 ## Installation and Updating
 
 ```bash
-$ go get -u github.com/roasbeef/btcd/mempool
+$ go get -u github.com/ltcsuite/ltcd/mempool
 ```
 
 ## License

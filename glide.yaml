@@ -1,8 +1,8 @@
-package: github.com/roasbeef/btcd
+package: github.com/ltcsuite/ltcd
 import:
 - package: github.com/btcsuite/btclog
-- package: github.com/roasbeef/btcutil
-  version: 4675c7e1e02d8fe1f40d1e40a71d31922e62e605
+- package: github.com/ltcsuite/ltcutil
+  version: a88d7dfb1c02af5dffe005ad21f40c42d9fd5ad0
   subpackages:
   - bloom
   - hdkeychain

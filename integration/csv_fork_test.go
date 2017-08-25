@@ -14,13 +14,13 @@ import (
 	"testing"
 	"time"
 
-	"github.com/roasbeef/btcd/blockchain"
-	"github.com/roasbeef/btcd/btcec"
-	"github.com/roasbeef/btcd/chaincfg"
-	"github.com/roasbeef/btcd/chaincfg/chainhash"
-	"github.com/roasbeef/btcd/integration/rpctest"
-	"github.com/roasbeef/btcd/txscript"
-	"github.com/roasbeef/btcd/wire"
+	"github.com/ltcsuite/ltcd/blockchain"
+	"github.com/ltcsuite/ltcd/btcec"
+	"github.com/ltcsuite/ltcd/chaincfg"
+	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
+	"github.com/ltcsuite/ltcd/integration/rpctest"
+	"github.com/ltcsuite/ltcd/txscript"
+	"github.com/ltcsuite/ltcd/wire"
 	"github.com/roasbeef/btcutil"
 )
 
@@ -108,8 +108,8 @@ func makeTestOutput(r *rpctest.Harness, t *testing.T,
 func TestBIP0113Activation(t *testing.T) {
 	t.Parallel()
 
-	btcdCfg := []string{"--rejectnonstd"}
-	r, err := rpctest.New(&chaincfg.SimNetParams, nil, btcdCfg)
+	ltcdCfg := []string{"--rejectnonstd"}
+	r, err := rpctest.New(&chaincfg.SimNetParams, nil, ltcdCfg)
 	if err != nil {
 		t.Fatal("unable to create primary harness: ", err)
 	}
@@ -404,8 +404,8 @@ func TestBIP0068AndBIP0112Activation(t *testing.T) {
 	// (sequence locks) and BIP 112 rule-sets which add input-age based
 	// relative lock times.
 
-	btcdCfg := []string{"--rejectnonstd"}
-	r, err := rpctest.New(&chaincfg.SimNetParams, nil, btcdCfg)
+	ltcdCfg := []string{"--rejectnonstd"}
+	r, err := rpctest.New(&chaincfg.SimNetParams, nil, ltcdCfg)
 	if err != nil {
 		t.Fatal("unable to create primary harness: ", err)
 	}

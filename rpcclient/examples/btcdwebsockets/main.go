@@ -10,8 +10,8 @@ import (
 	"path/filepath"
 	"time"
 
-	"github.com/roasbeef/btcd/rpcclient"
-	"github.com/roasbeef/btcd/wire"
+	"github.com/ltcsuite/ltcd/rpcclient"
+	"github.com/ltcsuite/ltcd/wire"
 	"github.com/roasbeef/btcutil"
 )
 
@@ -31,9 +31,9 @@ func main() {
 		},
 	}
 
-	// Connect to local btcd RPC server using websockets.
-	btcdHomeDir := btcutil.AppDataDir("btcd", false)
-	certs, err := ioutil.ReadFile(filepath.Join(btcdHomeDir, "rpc.cert"))
+	// Connect to local ltcd RPC server using websockets.
+	ltcdHomeDir := btcutil.AppDataDir("ltcd", false)
+	certs, err := ioutil.ReadFile(filepath.Join(ltcdHomeDir, "rpc.cert"))
 	if err != nil {
 		log.Fatal(err)
 	}

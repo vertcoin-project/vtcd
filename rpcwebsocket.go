@@ -23,13 +23,13 @@ import (
 	"golang.org/x/crypto/ripemd160"
 
 	"github.com/btcsuite/websocket"
-	"github.com/roasbeef/btcd/blockchain"
-	"github.com/roasbeef/btcd/btcjson"
-	"github.com/roasbeef/btcd/chaincfg"
-	"github.com/roasbeef/btcd/chaincfg/chainhash"
-	"github.com/roasbeef/btcd/database"
-	"github.com/roasbeef/btcd/txscript"
-	"github.com/roasbeef/btcd/wire"
+	"github.com/ltcsuite/ltcd/blockchain"
+	"github.com/ltcsuite/ltcd/btcjson"
+	"github.com/ltcsuite/ltcd/chaincfg"
+	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
+	"github.com/ltcsuite/ltcd/database"
+	"github.com/ltcsuite/ltcd/txscript"
+	"github.com/ltcsuite/ltcd/wire"
 	"github.com/roasbeef/btcutil"
 )
 
@@ -2599,7 +2599,7 @@ fetchRange:
 		minBlock += int32(len(hashList))
 	}
 
-	// Notify websocket client of the finished rescan.  Due to how btcd
+	// Notify websocket client of the finished rescan.  Due to how ltcd
 	// asynchronously queues notifications to not block calling code,
 	// there is no guarantee that any of the notifications created during
 	// rescan (such as rescanprogress, recvtx and redeemingtx) will be

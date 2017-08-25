@@ -7,7 +7,7 @@ package blockchain
 import (
 	"fmt"
 
-	"github.com/roasbeef/btcd/txscript"
+	"github.com/ltcsuite/ltcd/txscript"
 	"github.com/roasbeef/btcutil"
 )
 
