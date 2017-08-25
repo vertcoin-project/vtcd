@@ -14,7 +14,7 @@ import (
 	"github.com/ltcsuite/ltcd/database"
 	_ "github.com/ltcsuite/ltcd/database/ffldb"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/roasbeef/btcutil"
+	"github.com/ltcsuite/ltcutil"
 )
 
 // This example demonstrates creating a new database.
@@ -136,7 +136,7 @@ func Example_blockStorageAndRetrieval() {
 	// and example.
 	err = db.Update(func(tx database.Tx) error {
 		genesisBlock := chaincfg.MainNetParams.GenesisBlock
-		return tx.StoreBlock(btcutil.NewBlock(genesisBlock))
+		return tx.StoreBlock(ltcutil.NewBlock(genesisBlock))
 	})
 	if err != nil {
 		fmt.Println(err)

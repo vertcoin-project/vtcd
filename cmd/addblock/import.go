@@ -16,7 +16,7 @@ import (
 	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
 	"github.com/ltcsuite/ltcd/database"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/roasbeef/btcutil"
+	"github.com/ltcsuite/ltcutil"
 )
 
 var zeroHash = chainhash.Hash{}
@@ -94,7 +94,7 @@ func (bi *blockImporter) readBlock() ([]byte, error) {
 // with any potential errors.
 func (bi *blockImporter) processBlock(serializedBlock []byte) (bool, error) {
 	// Deserialize the block which includes checks for malformed blocks.
-	block, err := btcutil.NewBlockFromBytes(serializedBlock)
+	block, err := ltcutil.NewBlockFromBytes(serializedBlock)
 	if err != nil {
 		return false, err
 	}

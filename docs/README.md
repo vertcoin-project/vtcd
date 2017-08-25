@@ -290,7 +290,7 @@ information.
     * [mempool](https://github.com/ltcsuite/ltcd/tree/master/mempool) -
       Package mempool provides a policy-enforced pool of unmined bitcoin
       transactions.
-    * [btcutil](https://github.com/roasbeef/btcutil) - Provides Bitcoin-specific
+    * [ltcutil](https://github.com/ltcsuite/ltcutil) - Provides Bitcoin-specific
       convenience functions and types
     * [chainhash](https://github.com/ltcsuite/ltcd/tree/master/chaincfg/chainhash) -
       Provides a generic hash type and associated functions that allows the

@@ -14,11 +14,11 @@ import (
 	"github.com/ltcsuite/ltcd/database"
 	_ "github.com/ltcsuite/ltcd/database/ffldb"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/roasbeef/btcutil"
+	"github.com/ltcsuite/ltcutil"
 )
 
 var (
-	ltcdHomeDir     = btcutil.AppDataDir("ltcd", false)
+	ltcdHomeDir     = ltcutil.AppDataDir("ltcd", false)
 	knownDbTypes    = database.SupportedDrivers()
 	activeNetParams = &chaincfg.MainNetParams
 

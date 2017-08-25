@@ -13,7 +13,7 @@ import (
 	"github.com/ltcsuite/ltcd/database"
 	_ "github.com/ltcsuite/ltcd/database/ffldb"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/roasbeef/btcutil"
+	"github.com/ltcsuite/ltcutil"
 	flags "github.com/jessevdk/go-flags"
 )
 
@@ -24,7 +24,7 @@ const (
 )
 
 var (
-	ltcdHomeDir     = btcutil.AppDataDir("ltcd", false)
+	ltcdHomeDir     = ltcutil.AppDataDir("ltcd", false)
 	defaultDataDir  = filepath.Join(ltcdHomeDir, "data")
 	knownDbTypes    = database.SupportedDrivers()
 	activeNetParams = &chaincfg.MainNetParams

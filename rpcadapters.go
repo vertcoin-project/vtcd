@@ -12,7 +12,7 @@ import (
 	"github.com/ltcsuite/ltcd/mempool"
 	"github.com/ltcsuite/ltcd/peer"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/roasbeef/btcutil"
+	"github.com/ltcsuite/ltcutil"
 )
 
 // rpcPeer provides a peer for use with the RPC server and implements the
@@ -246,7 +246,7 @@ func (b *rpcSyncMgr) IsCurrent() bool {
 //
 // This function is safe for concurrent access and is part of the
 // rpcserverSyncManager interface implementation.
-func (b *rpcSyncMgr) SubmitBlock(block *btcutil.Block, flags blockchain.BehaviorFlags) (bool, error) {
+func (b *rpcSyncMgr) SubmitBlock(block *ltcutil.Block, flags blockchain.BehaviorFlags) (bool, error) {
 	return b.blockMgr.ProcessBlock(block, flags)
 }
 

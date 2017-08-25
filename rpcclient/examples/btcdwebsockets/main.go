@@ -12,7 +12,7 @@ import (
 
 	"github.com/ltcsuite/ltcd/rpcclient"
 	"github.com/ltcsuite/ltcd/wire"
-	"github.com/roasbeef/btcutil"
+	"github.com/ltcsuite/ltcutil"
 )
 
 func main() {
@@ -21,7 +21,7 @@ func main() {
 	// for notifications.  See the documentation of the rpcclient
 	// NotificationHandlers type for more details about each handler.
 	ntfnHandlers := rpcclient.NotificationHandlers{
-		OnFilteredBlockConnected: func(height int32, header *wire.BlockHeader, txns []*btcutil.Tx) {
+		OnFilteredBlockConnected: func(height int32, header *wire.BlockHeader, txns []*ltcutil.Tx) {
 			log.Printf("Block connected: %v (%d) %v",
 				header.BlockHash(), height, header.Timestamp)
 		},
@@ -32,7 +32,7 @@ func main() {
 	}
 
 	// Connect to local ltcd RPC server using websockets.
-	ltcdHomeDir := btcutil.AppDataDir("ltcd", false)
+	ltcdHomeDir := ltcutil.AppDataDir("ltcd", false)
 	certs, err := ioutil.ReadFile(filepath.Join(ltcdHomeDir, "rpc.cert"))
 	if err != nil {
 		log.Fatal(err)
