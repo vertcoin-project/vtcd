@@ -418,9 +418,9 @@ var TestNet4Params = Params{
 	GenesisHash:              &testNet4GenesisHash,
 	PowLimit:                 testNet4PowLimit,
 	PowLimitBits:             504365055,
-	BIP0034Height:            -1,
-	BIP0065Height:            -1,
-	BIP0066Height:            -1,
+	BIP0034Height:            76,
+	BIP0065Height:            76,
+	BIP0066Height:            76,
 	CoinbaseMaturity:         100,
 	SubsidyReductionInterval: 840000,
 	TargetTimespan:           (time.Hour * 24 * 3) + (time.Hour * 12), // 3.5 days
@@ -431,7 +431,13 @@ var TestNet4Params = Params{
 	GenerateSupported:        false,
 
 	// Checkpoints ordered from oldest to newest.
-	Checkpoints: []Checkpoint{},
+	Checkpoints: []Checkpoint{
+		{26115, newHashFromStr("817d5b509e91ab5e439652eee2f59271bbc7ba85021d720cdb6da6565b43c14f")},
+		{43928, newHashFromStr("7d86614c153f5ef6ad878483118ae523e248cd0dd0345330cb148e812493cbb4")},
+		{69296, newHashFromStr("66c2f58da3cfd282093b55eb09c1f5287d7a18801a8ff441830e67e8771010df")},
+		{99949, newHashFromStr("8dd471cb5aecf5ead91e7e4b1e932c79a0763060f8d93671b6801d115bfc6cde")},
+		{159256, newHashFromStr("ab5b0b9968842f5414804591119d6db829af606864b1959a25d6f5c114afb2b7")},
+	},
 
 	// Consensus rule change deployments.
 	//
