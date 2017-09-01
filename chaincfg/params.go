@@ -544,7 +544,7 @@ var SimNetParams = Params{
 
 	// Human-readable part for Bech32 encoded segwit addresses, as defined in
 	// BIP 173.
-	Bech32HRPSegwit: "lsb", // always lsb for sim net
+	Bech32HRPSegwit: "sltc", // always lsb for sim net
 
 	// Address encoding magics
 	PubKeyHashAddrID:        0x3f, // starts with S
