@@ -20,7 +20,7 @@ import (
 	_ "github.com/vertcoin/vtcd/database/ffldb"
 	"github.com/vertcoin/vtcd/txscript"
 	"github.com/vertcoin/vtcd/wire"
-	"github.com/ltcsuite/ltcutil"
+	"github.com/vertcoin/vtcutil"
 )
 
 const (
@@ -59,8 +59,8 @@ func isSupportedDbType(dbType string) bool {
 
 // loadBlocks reads files containing bitcoin block data (gzipped but otherwise
 // in the format bitcoind writes) from disk and returns them as an array of
-// ltcutil.Block.  This is largely borrowed from the test code in ltcdb.
-func loadBlocks(filename string) (blocks []*ltcutil.Block, err error) {
+// vtcutil.Block.  This is largely borrowed from the test code in ltcdb.
+func loadBlocks(filename string) (blocks []*vtcutil.Block, err error) {
 	filename = filepath.Join("testdata/", filename)
 
 	var network = wire.MainNet
@@ -79,7 +79,7 @@ func loadBlocks(filename string) (blocks []*ltcutil.Block, err error) {
 	}
 	defer fi.Close()
 
-	var block *ltcutil.Block
+	var block *vtcutil.Block
 
 	err = nil
 	for height := int64(1); err == nil; height++ {
@@ -105,7 +105,7 @@ func loadBlocks(filename string) (blocks []*ltcutil.Block, err error) {
 		// read block
 		dr.Read(rbytes)
 
-		block, err = ltcutil.NewBlockFromBytes(rbytes)
+		block, err = vtcutil.NewBlockFromBytes(rbytes)
 		if err != nil {
 			return
 		}

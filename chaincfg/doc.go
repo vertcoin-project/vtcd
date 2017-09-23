@@ -25,7 +25,7 @@
 //          "fmt"
 //          "log"
 //
-//          "github.com/ltcsuite/ltcutil"
+//          "github.com/vertcoin/vtcutil"
 //          "github.com/vertcoin/vtcd/chaincfg"
 //  )
 //
@@ -46,7 +46,7 @@
 //
 //          // Create and print new payment address, specific to the active network.
 //          pubKeyHash := make([]byte, 20)
-//          addr, err := ltcutil.NewAddressPubKeyHash(pubKeyHash, chainParams)
+//          addr, err := vtcutil.NewAddressPubKeyHash(pubKeyHash, chainParams)
 //          if err != nil {
 //                  log.Fatal(err)
 //          }

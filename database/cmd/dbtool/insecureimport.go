@@ -15,7 +15,7 @@ import (
 	"github.com/vertcoin/vtcd/chaincfg/chainhash"
 	"github.com/vertcoin/vtcd/database"
 	"github.com/vertcoin/vtcd/wire"
-	"github.com/ltcsuite/ltcutil"
+	"github.com/vertcoin/vtcutil"
 )
 
 // importCmd defines the configuration options for the insecureimport command.
@@ -108,7 +108,7 @@ func (bi *blockImporter) readBlock() ([]byte, error) {
 // NOTE: This is not a safe import as it does not verify chain rules.
 func (bi *blockImporter) processBlock(serializedBlock []byte) (bool, error) {
 	// Deserialize the block which includes checks for malformed blocks.
-	block, err := ltcutil.NewBlockFromBytes(serializedBlock)
+	block, err := vtcutil.NewBlockFromBytes(serializedBlock)
 	if err != nil {
 		return false, err
 	}

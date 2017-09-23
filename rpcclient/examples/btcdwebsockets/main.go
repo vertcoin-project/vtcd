@@ -12,7 +12,7 @@ import (
 
 	"github.com/vertcoin/vtcd/rpcclient"
 	"github.com/vertcoin/vtcd/wire"
-	"github.com/ltcsuite/ltcutil"
+	"github.com/vertcoin/vtcutil"
 )
 
 func main() {
@@ -21,7 +21,7 @@ func main() {
 	// for notifications.  See the documentation of the rpcclient
 	// NotificationHandlers type for more details about each handler.
 	ntfnHandlers := rpcclient.NotificationHandlers{
-		OnFilteredBlockConnected: func(height int32, header *wire.BlockHeader, txns []*ltcutil.Tx) {
+		OnFilteredBlockConnected: func(height int32, header *wire.BlockHeader, txns []*vtcutil.Tx) {
 			log.Printf("Block connected: %v (%d) %v",
 				header.BlockHash(), height, header.Timestamp)
 		},
@@ -32,7 +32,7 @@ func main() {
 	}
 
 	// Connect to local ltcd RPC server using websockets.
-	ltcdHomeDir := ltcutil.AppDataDir("ltcd", false)
+	ltcdHomeDir := vtcutil.AppDataDir("ltcd", false)
 	certs, err := ioutil.ReadFile(filepath.Join(ltcdHomeDir, "rpc.cert"))
 	if err != nil {
 		log.Fatal(err)

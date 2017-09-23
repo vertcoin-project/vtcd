@@ -10,7 +10,7 @@ import (
 
 	"github.com/vertcoin/vtcd/chaincfg/chainhash"
 	"github.com/vertcoin/vtcd/database"
-	"github.com/ltcsuite/ltcutil"
+	"github.com/vertcoin/vtcutil"
 )
 
 // BehaviorFlags is a bitmask defining tweaks to the normal behavior when
@@ -144,7 +144,7 @@ func (b *BlockChain) processOrphans(hash *chainhash.Hash, flags BehaviorFlags) e
 // whether or not the block is an orphan.
 //
 // This function is safe for concurrent access.
-func (b *BlockChain) ProcessBlock(block *ltcutil.Block, flags BehaviorFlags) (bool, bool, error) {
+func (b *BlockChain) ProcessBlock(block *vtcutil.Block, flags BehaviorFlags) (bool, bool, error) {
 	b.chainLock.Lock()
 	defer b.chainLock.Unlock()
 

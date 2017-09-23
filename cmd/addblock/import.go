@@ -16,7 +16,7 @@ import (
 	"github.com/vertcoin/vtcd/chaincfg/chainhash"
 	"github.com/vertcoin/vtcd/database"
 	"github.com/vertcoin/vtcd/wire"
-	"github.com/ltcsuite/ltcutil"
+	"github.com/vertcoin/vtcutil"
 )
 
 var zeroHash = chainhash.Hash{}
@@ -94,7 +94,7 @@ func (bi *blockImporter) readBlock() ([]byte, error) {
 // with any potential errors.
 func (bi *blockImporter) processBlock(serializedBlock []byte) (bool, error) {
 	// Deserialize the block which includes checks for malformed blocks.
-	block, err := ltcutil.NewBlockFromBytes(serializedBlock)
+	block, err := vtcutil.NewBlockFromBytes(serializedBlock)
 	if err != nil {
 		return false, err
 	}

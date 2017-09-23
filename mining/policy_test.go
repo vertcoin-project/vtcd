@@ -11,7 +11,7 @@ import (
 	"github.com/vertcoin/vtcd/blockchain"
 	"github.com/vertcoin/vtcd/chaincfg/chainhash"
 	"github.com/vertcoin/vtcd/wire"
-	"github.com/ltcsuite/ltcutil"
+	"github.com/vertcoin/vtcutil"
 )
 
 // newHashFromStr converts the passed big-endian hex string into a
@@ -49,7 +49,7 @@ func newUtxoViewpoint(sourceTxns []*wire.MsgTx, sourceTxHeights []int32) *blockc
 
 	view := blockchain.NewUtxoViewpoint()
 	for i, tx := range sourceTxns {
-		view.AddTxOuts(ltcutil.NewTx(tx), sourceTxHeights[i])
+		view.AddTxOuts(vtcutil.NewTx(tx), sourceTxHeights[i])
 	}
 	return view
 }

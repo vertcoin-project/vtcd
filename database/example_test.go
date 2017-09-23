@@ -14,7 +14,7 @@ import (
 	"github.com/vertcoin/vtcd/database"
 	_ "github.com/vertcoin/vtcd/database/ffldb"
 	"github.com/vertcoin/vtcd/wire"
-	"github.com/ltcsuite/ltcutil"
+	"github.com/vertcoin/vtcutil"
 )
 
 // This example demonstrates creating a new database.
@@ -136,7 +136,7 @@ func Example_blockStorageAndRetrieval() {
 	// and example.
 	err = db.Update(func(tx database.Tx) error {
 		genesisBlock := chaincfg.MainNetParams.GenesisBlock
-		return tx.StoreBlock(ltcutil.NewBlock(genesisBlock))
+		return tx.StoreBlock(vtcutil.NewBlock(genesisBlock))
 	})
 	if err != nil {
 		fmt.Println(err)

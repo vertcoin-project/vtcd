@@ -19,7 +19,7 @@ import (
 	"github.com/vertcoin/vtcd/chaincfg/chainhash"
 	"github.com/vertcoin/vtcd/rpcclient"
 	"github.com/vertcoin/vtcd/wire"
-	"github.com/ltcsuite/ltcutil"
+	"github.com/vertcoin/vtcutil"
 )
 
 const (
@@ -166,7 +166,7 @@ func New(activeNet *chaincfg.Params, handlers *rpcclient.NotificationHandlers,
 	// callback.
 	if handlers.OnFilteredBlockConnected != nil {
 		obc := handlers.OnFilteredBlockConnected
-		handlers.OnFilteredBlockConnected = func(height int32, header *wire.BlockHeader, filteredTxns []*ltcutil.Tx) {
+		handlers.OnFilteredBlockConnected = func(height int32, header *wire.BlockHeader, filteredTxns []*vtcutil.Tx) {
 			wallet.IngestBlock(height, header, filteredTxns)
 			obc(height, header, filteredTxns)
 		}
@@ -222,7 +222,7 @@ func (h *Harness) SetUp(createTestChain bool, numMatureOutputs uint32) error {
 
 	// Filter transactions that pay to the coinbase associated with the
 	// wallet.
-	filterAddrs := []ltcutil.Address{h.wallet.coinbaseAddr}
+	filterAddrs := []vtcutil.Address{h.wallet.coinbaseAddr}
 	if err := h.Node.LoadTxFilter(true, filterAddrs, nil); err != nil {
 		return err
 	}
@@ -328,7 +328,7 @@ func (h *Harness) connectRPCClient() error {
 // wallet.
 //
 // This function is safe for concurrent access.
-func (h *Harness) NewAddress() (ltcutil.Address, error) {
+func (h *Harness) NewAddress() (vtcutil.Address, error) {
 	return h.wallet.NewAddress()
 }
 
@@ -336,7 +336,7 @@ func (h *Harness) NewAddress() (ltcutil.Address, error) {
 // wallet.
 //
 // This function is safe for concurrent access.
-func (h *Harness) ConfirmedBalance() ltcutil.Amount {
+func (h *Harness) ConfirmedBalance() vtcutil.Amount {
 	return h.wallet.ConfirmedBalance()
 }
 
@@ -346,7 +346,7 @@ func (h *Harness) ConfirmedBalance() ltcutil.Amount {
 //
 // This function is safe for concurrent access.
 func (h *Harness) SendOutputs(targetOutputs []*wire.TxOut,
-	feeRate ltcutil.Amount) (*chainhash.Hash, error) {
+	feeRate vtcutil.Amount) (*chainhash.Hash, error) {
 
 	return h.wallet.SendOutputs(targetOutputs, feeRate)
 }
@@ -362,7 +362,7 @@ func (h *Harness) SendOutputs(targetOutputs []*wire.TxOut,
 //
 // This function is safe for concurrent access.
 func (h *Harness) CreateTransaction(targetOutputs []*wire.TxOut,
-	feeRate ltcutil.Amount) (*wire.MsgTx, error) {
+	feeRate vtcutil.Amount) (*wire.MsgTx, error) {
 
 	return h.wallet.CreateTransaction(targetOutputs, feeRate)
 }
@@ -399,8 +399,8 @@ func (h *Harness) P2PAddress() string {
 // blockTime parameter if one doesn't wish to set a custom time.
 //
 // This function is safe for concurrent access.
-func (h *Harness) GenerateAndSubmitBlock(txns []*ltcutil.Tx, blockVersion int32,
-	blockTime time.Time) (*ltcutil.Block, error) {
+func (h *Harness) GenerateAndSubmitBlock(txns []*vtcutil.Tx, blockVersion int32,
+	blockTime time.Time) (*vtcutil.Block, error) {
 	return h.GenerateAndSubmitBlockWithCustomCoinbaseOutputs(txns,
 		blockVersion, blockTime, []wire.TxOut{})
 }
@@ -420,8 +420,8 @@ func (h *Harness) GenerateAndSubmitBlock(txns []*ltcutil.Tx, blockVersion int32,
 //
 // This function is safe for concurrent access.
 func (h *Harness) GenerateAndSubmitBlockWithCustomCoinbaseOutputs(
-	txns []*ltcutil.Tx, blockVersion int32, blockTime time.Time,
-	mineTo []wire.TxOut) (*ltcutil.Block, error) {
+	txns []*vtcutil.Tx, blockVersion int32, blockTime time.Time,
+	mineTo []wire.TxOut) (*vtcutil.Block, error) {
 
 	h.Lock()
 	defer h.Unlock()
@@ -438,7 +438,7 @@ func (h *Harness) GenerateAndSubmitBlockWithCustomCoinbaseOutputs(
 	if err != nil {
 		return nil, err
 	}
-	prevBlock := ltcutil.NewBlock(mBlock)
+	prevBlock := vtcutil.NewBlock(mBlock)
 	prevBlock.SetHeight(prevBlockHeight)
 
 	// Create a new block including the specified transactions

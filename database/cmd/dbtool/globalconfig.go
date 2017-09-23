@@ -14,11 +14,11 @@ import (
 	"github.com/vertcoin/vtcd/database"
 	_ "github.com/vertcoin/vtcd/database/ffldb"
 	"github.com/vertcoin/vtcd/wire"
-	"github.com/ltcsuite/ltcutil"
+	"github.com/vertcoin/vtcutil"
 )
 
 var (
-	ltcdHomeDir     = ltcutil.AppDataDir("ltcd", false)
+	ltcdHomeDir     = vtcutil.AppDataDir("ltcd", false)
 	knownDbTypes    = database.SupportedDrivers()
 	activeNetParams = &chaincfg.MainNetParams
 

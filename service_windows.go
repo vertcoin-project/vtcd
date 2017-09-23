@@ -16,8 +16,8 @@ import (
 )
 
 const (
-	// svcName is the name of ltcd service.
-	svcName = "ltcdsvc"
+	// svcName is the name of vtcd service.
+	svcName = "vtcdsvc"
 
 	// svcDisplayName is the service name that will be shown in the windows
 	// services list.  Not the svcName is the "real" name which is used
@@ -32,7 +32,7 @@ const (
 // elog is used to send messages to the Windows event log.
 var elog *eventlog.Log
 
-// logServiceStartOfDay logs information about ltcd when the main server has
+// logServiceStartOfDay logs information about vtcd when the main server has
 // been started to the Windows event log.
 func logServiceStartOfDay(srvr *server) {
 	var message string
@@ -44,27 +44,27 @@ func logServiceStartOfDay(srvr *server) {
 	elog.Info(1, message)
 }
 
-// ltcdService houses the main service handler which handles all service
-// updates and launching ltcdMain.
-type ltcdService struct{}
+// vtcdService houses the main service handler which handles all service
+// updates and launching vtcdMain.
+type vtcdService struct{}
 
 // Execute is the main entry point the winsvc package calls when receiving
 // information from the Windows service control manager.  It launches the
-// long-running ltcdMain (which is the real meat of ltcd), handles service
+// long-running vtcdMain (which is the real meat of vtcd), handles service
 // change requests, and notifies the service control manager of changes.
-func (s *ltcdService) Execute(args []string, r <-chan svc.ChangeRequest, changes chan<- svc.Status) (bool, uint32) {
+func (s *vtcdService) Execute(args []string, r <-chan svc.ChangeRequest, changes chan<- svc.Status) (bool, uint32) {
 	// Service start is pending.
 	const cmdsAccepted = svc.AcceptStop | svc.AcceptShutdown
 	changes <- svc.Status{State: svc.StartPending}
 
-	// Start ltcdMain in a separate goroutine so the service can start
+	// Start vtcdMain in a separate goroutine so the service can start
 	// quickly.  Shutdown (along with a potential error) is reported via
 	// doneChan.  serverChan is notified with the main server instance once
 	// it is started so it can be gracefully stopped.
 	doneChan := make(chan error)
 	serverChan := make(chan *server)
 	go func() {
-		err := ltcdMain(serverChan)
+		err := vtcdMain(serverChan)
 		doneChan <- err
 	}()
 
@@ -110,7 +110,7 @@ loop:
 	return false, 0
 }
 
-// installService attempts to install the ltcd service.  Typically this should
+// installService attempts to install the vtcd service.  Typically this should
 // be done by the msi installer, but it is provided here since it can be useful
 // for development.
 func installService() error {
@@ -159,7 +159,7 @@ func installService() error {
 	return eventlog.InstallAsEventCreate(svcName, eventsSupported)
 }
 
-// removeService attempts to uninstall the ltcd service.  Typically this should
+// removeService attempts to uninstall the vtcd service.  Typically this should
 // be done by the msi uninstaller, but it is provided here since it can be
 // useful for development.  Not the eventlog entry is intentionally not removed
 // since it would invalidate any existing event log messages.
@@ -182,7 +182,7 @@ func removeService() error {
 	return service.Delete()
 }
 
-// startService attempts to start the ltcd service.
+// startService attempts to start the vtcd service.
 func startService() error {
 	// Connect to the windows service manager.
 	serviceManager, err := mgr.Connect()
@@ -291,7 +291,7 @@ func serviceMain() (bool, error) {
 	}
 	defer elog.Close()
 
-	err = svc.Run(svcName, &ltcdService{})
+	err = svc.Run(svcName, &vtcdService{})
 	if err != nil {
 		elog.Error(1, fmt.Sprintf("Service start failed: %v", err))
 		return true, err

@@ -7,7 +7,7 @@ package mining
 import (
 	"github.com/vertcoin/vtcd/blockchain"
 	"github.com/vertcoin/vtcd/wire"
-	"github.com/ltcsuite/ltcutil"
+	"github.com/vertcoin/vtcutil"
 )
 
 const (
@@ -44,7 +44,7 @@ type Policy struct {
 	// TxMinFreeFee is the minimum fee in Satoshi/1000 bytes that is
 	// required for a transaction to be treated as free for mining purposes
 	// (block template generation).
-	TxMinFreeFee ltcutil.Amount
+	TxMinFreeFee vtcutil.Amount
 }
 
 // minInt is a helper function to return the minimum of two ints.  This avoids

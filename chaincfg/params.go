@@ -225,101 +225,104 @@ type Params struct {
 	HDCoinType uint32
 }
 
-// MainNetParams defines the network parameters for the main Litecoin network.
-var MainNetParams = Params{
-	Name:        "mainnet",
-	Net:         wire.MainNet,
-	DefaultPort: "9333",
+var VertcoinTestNetParams = Params{
+	Name:        "vtctest",
+	DefaultPort: "15889",
+	Net:         wire.VertTestNet,
 	DNSSeeds: []DNSSeed{
-		{"seed-a.litecoin.loshan.co.uk", true},
-		{"dnsseed.thrasher.io", true},
-		{"dnsseed.litecointools.com", false},
-		{"dnsseed.litecoinpool.org", false},
-		{"dnsseed.koin-project.com", false},
+		{"fr1.vtconline.org", false},
 	},
 
 	// Chain parameters
-	GenesisBlock:             &genesisBlock,
-	GenesisHash:              &genesisHash,
-	PowLimit:                 mainPowLimit,
-	PowLimitBits:             504365055,
-	BIP0034Height:            710000,
-	BIP0065Height:            918684,
-	BIP0066Height:            811879,
-	CoinbaseMaturity:         100,
+
+	GenesisBlock:             &VertcoinTestnetGenesisBlock,
+	GenesisHash:              &VertcoinTestnetGenesisHash,
+	PowLimit:                 testNet4PowLimit,
+	PowLimitBits:             0x1e0fffff,
+	CoinbaseMaturity:         120,
 	SubsidyReductionInterval: 840000,
-	TargetTimespan:           (time.Hour * 24 * 3) + (time.Hour * 12), // 3.5 days
-	TargetTimePerBlock:       (time.Minute * 2) + (time.Second * 30),  // 2.5 minutes
-	RetargetAdjustmentFactor: 4,                                       // 25% less, 400% more
+	TargetTimespan:           time.Second * 302400, // 3.5 weeks
+	TargetTimePerBlock:       time.Second * 150,    // 150 seconds
+	RetargetAdjustmentFactor: 4,                    // 25% less, 400% more
+	ReduceMinDifficulty:      true,
+	MinDiffReductionTime:     time.Second * 150 * 2, // ?? unknown
+	GenerateSupported:        false,
+
+	// Checkpoints ordered from oldest to newest.
+	Checkpoints: []Checkpoint{},
+
+	// Mempool parameters
+	RelayNonStdTxs: true,
+
+	// Address encoding magics
+	PubKeyHashAddrID: 0x4a, // starts with X or W
+	ScriptHashAddrID: 0xc4,
+	PrivateKeyID:     0xef,
+
+	// BIP32 hierarchical deterministic extended key magics
+	HDPrivateKeyID: [4]byte{0x04, 0x35, 0x83, 0x94}, // starts with tprv
+	HDPublicKeyID:  [4]byte{0x04, 0x35, 0x87, 0xcf}, // starts with tpub
+
+	// BIP44 coin type used in the hierarchical deterministic path for
+	// address generation.
+	HDCoinType: 65536,
+}
+
+var VertcoinParams = Params{
+	Name:        "vtc",
+	DefaultPort: "5889",
+	Net:         wire.VertcoinNet,
+	DNSSeeds: []DNSSeed{
+		{"fr1.vtconline.org", false},
+		{"uk1.vtconline.org", false},
+		{"useast1.vtconline.org", false},
+		{"vtc.alwayshashing.com", false},
+		{"crypto.office-on-the.net", false},
+		{"p2pool.kosmoplovci.org", false},
+	},
+
+	GenesisBlock:             &VertcoinGenesisBlock,
+	GenesisHash:              &VertcoinGenesisHash,
+	PowLimit:                 testNet4PowLimit,
+	PowLimitBits:             0x1e0fffff,
+	CoinbaseMaturity:         120,
+	SubsidyReductionInterval: 840000,
+	TargetTimespan:           time.Second * 302400, // 3.5 weeks
+	TargetTimePerBlock:       time.Second * 150,    // 150 seconds
+	RetargetAdjustmentFactor: 4,                    // 25% less, 400% more
 	ReduceMinDifficulty:      false,
-	MinDiffReductionTime:     0,
+	MinDiffReductionTime:     time.Second * 150 * 2, // ?? unknown
 	GenerateSupported:        false,
 
 	// Checkpoints ordered from oldest to newest.
 	Checkpoints: []Checkpoint{
-		{1500, newHashFromStr("841a2965955dd288cfa707a755d05a54e45f8bd476835ec9af4402a2b59a2967")},
-		{4032, newHashFromStr("9ce90e427198fc0ef05e5905ce3503725b80e26afd35a987965fd7e3d9cf0846")},
-		{8064, newHashFromStr("eb984353fc5190f210651f150c40b8a4bab9eeeff0b729fcb3987da694430d70")},
-		{16128, newHashFromStr("602edf1859b7f9a6af809f1d9b0e6cb66fdc1d4d9dcd7a4bec03e12a1ccd153d")},
-		{23420, newHashFromStr("d80fdf9ca81afd0bd2b2a90ac3a9fe547da58f2530ec874e978fce0b5101b507")},
-		{50000, newHashFromStr("69dc37eb029b68f075a5012dcc0419c127672adb4f3a32882b2b3e71d07a20a6")},
-		{80000, newHashFromStr("4fcb7c02f676a300503f49c764a89955a8f920b46a8cbecb4867182ecdb2e90a")},
-		{120000, newHashFromStr("bd9d26924f05f6daa7f0155f32828ec89e8e29cee9e7121b026a7a3552ac6131")},
-		{161500, newHashFromStr("dbe89880474f4bb4f75c227c77ba1cdc024991123b28b8418dbbf7798471ff43")},
-		{179620, newHashFromStr("2ad9c65c990ac00426d18e446e0fd7be2ffa69e9a7dcb28358a50b2b78b9f709")},
-		{240000, newHashFromStr("7140d1c4b4c2157ca217ee7636f24c9c73db39c4590c4e6eab2e3ea1555088aa")},
-		{383640, newHashFromStr("2b6809f094a9215bafc65eb3f110a35127a34be94b7d0590a096c3f126c6f364")},
-		{409004, newHashFromStr("487518d663d9f1fa08611d9395ad74d982b667fbdc0e77e9cf39b4f1355908a3")},
-		{456000, newHashFromStr("bf34f71cc6366cd487930d06be22f897e34ca6a40501ac7d401be32456372004")},
-		{638902, newHashFromStr("15238656e8ec63d28de29a8c75fcf3a5819afc953dcd9cc45cecc53baec74f38")},
-		{721000, newHashFromStr("198a7b4de1df9478e2463bd99d75b714eab235a2e63e741641dc8a759a9840e5")},
-	},
-
-	// Consensus rule change deployments.
-	//
-	// The miner confirmation window is defined as:
-	//   target proof of work timespan / target proof of work spacing
-	RuleChangeActivationThreshold: 6048, // 75% of MinerConfirmationWindow
-	MinerConfirmationWindow:       8064, //
-	Deployments: [DefinedDeployments]ConsensusDeployment{
-		DeploymentTestDummy: {
-			BitNumber:  28,
-			StartTime:  1199145601, // January 1, 2008 UTC
-			ExpireTime: 1230767999, // December 31, 2008 UTC
-		},
-		DeploymentCSV: {
-			BitNumber:  0,
-			StartTime:  1485561600, // January 28, 2017 UTC
-			ExpireTime: 1517356801, // January 31st, 2018 UTC
-		},
-		DeploymentSegwit: {
-			BitNumber:  1,
-			StartTime:  1485561600, // January 28, 2017 UTC
-			ExpireTime: 1517356801, // January 31st, 2018 UTC.
-		},
+		{0, newHashFromStr("4d96a915f49d40b1e5c2844d1ee2dccb90013a990ccea12c492d22110489f0c4")},
+		{24200, newHashFromStr("d7ed819858011474c8b0cae4ad0b9bdbb745becc4c386bc22d1220cc5a4d1787")},
+		{65000, newHashFromStr("9e673a69c35a423f736ab66f9a195d7c42f979847a729c0f3cef2c0b8b9d0289")},
+		{84065, newHashFromStr("a904170a5a98109b2909379d9bc03ef97a6b44d5dafbc9084b8699b0cba5aa98")},
+		{228023, newHashFromStr("15c94667a9e941359d2ee6527e2876db1b5e7510a5ded3885ca02e7e0f516b51")},
+		{346992, newHashFromStr("f1714fa4c7990f4b3d472eb22132891ccd3c7ad7208e2d1ab15bde68854fb0ee")},
+		{347269, newHashFromStr("fa1e592b7ea2aa97c5f20ccd7c40f3aaaeb31d1232c978847a79f28f83b6c22a")},
+		{430000, newHashFromStr("2f5703cf7b6f956b84fd49948cbf49dc164cfcb5a7b55903b1c4f53bc7851611")},
+		{516999, newHashFromStr("572ed47da461743bcae526542053e7bc532de299345e4f51d77786f2870b7b28")},
+		{627610, newHashFromStr("6000a787f2d8bb77d4f491a423241a4cc8439d862ca6cec6851aba4c79ccfedc")},
 	},
 
 	// Mempool parameters
-	RelayNonStdTxs: false,
-
-	// Human-readable part for Bech32 encoded segwit addresses, as defined in
-	// BIP 173.
-	Bech32HRPSegwit: "ltc", // always ltc for main net
+	RelayNonStdTxs: true,
 
 	// Address encoding magics
-	PubKeyHashAddrID:        0x30, // starts with L
-	ScriptHashAddrID:        0x50, // starts with M
-	PrivateKeyID:            0xB0, // starts with 6 (uncompressed) or T (compressed)
-	WitnessPubKeyHashAddrID: 0x06, // starts with p2
-	WitnessScriptHashAddrID: 0x0A, // starts with 7Xh
+	PubKeyHashAddrID: 0x47, // starts with V
+	ScriptHashAddrID: 0x05, // starts with 3
+	PrivateKeyID:     0x80,
 
 	// BIP32 hierarchical deterministic extended key magics
-	HDPrivateKeyID: [4]byte{0x04, 0x88, 0xad, 0xe4}, // starts with xprv
-	HDPublicKeyID:  [4]byte{0x04, 0x88, 0xb2, 0x1e}, // starts with xpub
+	HDPrivateKeyID: [4]byte{0x04, 0x35, 0x83, 0x94}, // starts with tprv
+	HDPublicKeyID:  [4]byte{0x04, 0x35, 0x87, 0xcf}, // starts with tpub
 
 	// BIP44 coin type used in the hierarchical deterministic path for
 	// address generation.
-	HDCoinType: 2,
+	HDCoinType: 28,
 }
 
 // RegressionNetParams defines the network parameters for the regression test
@@ -380,7 +383,7 @@ var RegressionNetParams = Params{
 
 	// Human-readable part for Bech32 encoded segwit addresses, as defined in
 	// BIP 173.
-	Bech32HRPSegwit: "tltc", // always tltc for test net
+	Bech32HRPSegwit: "tvtc", // always tltc for test net
 
 	// Address encoding magics
 	PubKeyHashAddrID: 0x6f, // starts with m or n
@@ -396,177 +399,64 @@ var RegressionNetParams = Params{
 	HDCoinType: 1,
 }
 
-// TestNet4Params defines the network parameters for the test Litecoin network
-// (version 4).  Not to be confused with the regression test network, this
-// network is sometimes simply called "testnet".
-var TestNet4Params = Params{
-	Name:        "testnet4",
-	Net:         wire.TestNet4,
-	DefaultPort: "19335",
-	DNSSeeds: []DNSSeed{
-		{"testnet-seed.litecointools.com", false},
-		{"seed-b.litecoin.loshan.co.uk", true},
-		{"dnsseed-testnet.thrasher.io", true},
+// VertcoinTestNetGenesisHash
+var VertcoinTestnetGenesisHash = chainhash.Hash([chainhash.HashSize]byte{
+	0xc9, 0xd2, 0x7a, 0x49, 0x47, 0x27, 0x2e, 0xe3, 0xc2,
+	0xe8, 0x1a, 0x74, 0xb6, 0x79, 0xac, 0xec, 0x5d, 0x85,
+	0xa4, 0x6a, 0x97, 0x16, 0x79, 0xf0, 0xc8, 0x64, 0x7a,
+	0xeb, 0x4f, 0xf2, 0xe8, 0xce,
+})
+
+var VertcoinTestnetMerkleRoot = chainhash.Hash([chainhash.HashSize]byte{
+	0xe7, 0x23, 0x01, 0xfc, 0x49, 0x32, 0x3e, 0xe1, 0x51,
+	0xcf, 0x10, 0x48, 0x23, 0x0f, 0x03, 0x2c, 0xa5, 0x89,
+	0x75, 0x3b, 0xa7, 0x08, 0x62, 0x22, 0xa5, 0xc0, 0x23,
+	0xe3, 0xa0, 0x8c, 0xf3, 0x4a,
+})
+
+var VertcoinTestnetGenesisBlock = wire.MsgBlock{
+	Header: wire.BlockHeader{
+		Version:    1,
+		PrevBlock:  chainhash.Hash{}, // empty
+		MerkleRoot: VertcoinTestnetMerkleRoot,
+		Timestamp:  time.Unix(1481291250, 0), // later
+		Bits:       0x1e0ffff0,
+		Nonce:      915027,
 	},
-
-	// Chain parameters
-	GenesisBlock:             &testNet4GenesisBlock,
-	GenesisHash:              &testNet4GenesisHash,
-	PowLimit:                 testNet4PowLimit,
-	PowLimitBits:             504365055,
-	BIP0034Height:            76,
-	BIP0065Height:            76,
-	BIP0066Height:            76,
-	CoinbaseMaturity:         100,
-	SubsidyReductionInterval: 840000,
-	TargetTimespan:           (time.Hour * 24 * 3) + (time.Hour * 12), // 3.5 days
-	TargetTimePerBlock:       (time.Minute * 2) + (time.Second * 30),  // 2.5 minutes
-	RetargetAdjustmentFactor: 4,                                       // 25% less, 400% more
-	ReduceMinDifficulty:      true,
-	MinDiffReductionTime:     time.Minute * 5, // TargetTimePerBlock * 2
-	GenerateSupported:        false,
-
-	// Checkpoints ordered from oldest to newest.
-	Checkpoints: []Checkpoint{
-		{26115, newHashFromStr("817d5b509e91ab5e439652eee2f59271bbc7ba85021d720cdb6da6565b43c14f")},
-		{43928, newHashFromStr("7d86614c153f5ef6ad878483118ae523e248cd0dd0345330cb148e812493cbb4")},
-		{69296, newHashFromStr("66c2f58da3cfd282093b55eb09c1f5287d7a18801a8ff441830e67e8771010df")},
-		{99949, newHashFromStr("8dd471cb5aecf5ead91e7e4b1e932c79a0763060f8d93671b6801d115bfc6cde")},
-		{159256, newHashFromStr("ab5b0b9968842f5414804591119d6db829af606864b1959a25d6f5c114afb2b7")},
-	},
-
-	// Consensus rule change deployments.
-	//
-	// The miner confirmation window is defined as:
-	//   target proof of work timespan / target proof of work spacing
-	RuleChangeActivationThreshold: 1512, // 75% of MinerConfirmationWindow
-	MinerConfirmationWindow:       2016,
-	Deployments: [DefinedDeployments]ConsensusDeployment{
-		DeploymentTestDummy: {
-			BitNumber:  28,
-			StartTime:  1199145601, // January 1, 2008 UTC
-			ExpireTime: 1230767999, // December 31, 2008 UTC
-		},
-		DeploymentCSV: {
-			BitNumber:  0,
-			StartTime:  1483228800, // January 1, 2017
-			ExpireTime: 1517356801, // January 31st, 2018
-		},
-		DeploymentSegwit: {
-			BitNumber:  1,
-			StartTime:  1483228800, // January 1, 2017
-			ExpireTime: 1517356801, // January 31st, 2018
-		},
-	},
-
-	// Mempool parameters
-	RelayNonStdTxs: true,
-
-	// Human-readable part for Bech32 encoded segwit addresses, as defined in
-	// BIP 173.
-	Bech32HRPSegwit: "tltc", // always tb for test net
-
-	// Address encoding magics
-	PubKeyHashAddrID:        0x6f, // starts with m or n
-	ScriptHashAddrID:        0xc4, // starts with 2
-	WitnessPubKeyHashAddrID: 0x52, // starts with QW
-	WitnessScriptHashAddrID: 0x31, // starts with T7n
-	PrivateKeyID:            0xef, // starts with 9 (uncompressed) or c (compressed)
-
-	// BIP32 hierarchical deterministic extended key magics
-	HDPrivateKeyID: [4]byte{0x04, 0x35, 0x83, 0x94}, // starts with tprv
-	HDPublicKeyID:  [4]byte{0x04, 0x35, 0x87, 0xcf}, // starts with tpub
-
-	// BIP44 coin type used in the hierarchical deterministic path for
-	// address generation.
-	HDCoinType: 1,
 }
 
-// SimNetParams defines the network parameters for the simulation test Litecoin
-// network.  This network is similar to the normal test network except it is
-// intended for private use within a group of individuals doing simulation
-// testing.  The functionality is intended to differ in that the only nodes
-// which are specifically specified are used to create the network rather than
-// following normal discovery rules.  This is important as otherwise it would
-// just turn into another public testnet.
-var SimNetParams = Params{
-	Name:        "simnet",
-	Net:         wire.SimNet,
-	DefaultPort: "18555",
-	DNSSeeds:    []DNSSeed{}, // NOTE: There must NOT be any seeds.
+// ==================== Vertcoin
 
-	// Chain parameters
-	GenesisBlock:             &simNetGenesisBlock,
-	GenesisHash:              &simNetGenesisHash,
-	PowLimit:                 simNetPowLimit,
-	PowLimitBits:             0x207fffff,
-	BIP0034Height:            0, // Always active on simnet
-	BIP0065Height:            0, // Always active on simnet
-	BIP0066Height:            0, // Always active on simnet
-	CoinbaseMaturity:         100,
-	SubsidyReductionInterval: 210000,
-	TargetTimespan:           time.Hour * 24 * 14, // 14 days
-	TargetTimePerBlock:       time.Minute * 10,    // 10 minutes
-	RetargetAdjustmentFactor: 4,                   // 25% less, 400% more
-	ReduceMinDifficulty:      true,
-	MinDiffReductionTime:     time.Minute * 20, // TargetTimePerBlock * 2
-	GenerateSupported:        true,
+// VertcoinNetGenesisHash
+var VertcoinGenesisHash = chainhash.Hash([chainhash.HashSize]byte{
+	0xc4, 0xf0, 0x89, 0x04, 0x11, 0x22, 0x2d, 0x49, 0x2c, 0xa1,
+	0xce, 0x0c, 0x99, 0x3a, 0x01, 0x90, 0xcb, 0xdc, 0xe2, 0x1e,
+	0x4d, 0x84, 0xc2, 0xe5, 0xb1, 0x40, 0x9d, 0xf4, 0x15, 0xa9,
+	0x96, 0x4d,
+})
 
-	// Checkpoints ordered from oldest to newest.
-	Checkpoints: nil,
+var VertcoinMerkleRoot = chainhash.Hash([chainhash.HashSize]byte{
+	0xe7, 0x23, 0x01, 0xfc, 0x49, 0x32, 0x3e, 0xe1, 0x51, 0xcf, 0x10, 0x48, 0x23, 0x0f,
+	0x03, 0x2c, 0xa5, 0x89, 0x75, 0x3b, 0xa7, 0x08, 0x62, 0x22, 0xa5, 0xc0, 0x23, 0xe3,
+	0xa0, 0x8c, 0xf3, 0x4a,
+})
 
-	// Consensus rule change deployments.
-	//
-	// The miner confirmation window is defined as:
-	//   target proof of work timespan / target proof of work spacing
-	RuleChangeActivationThreshold: 75, // 75% of MinerConfirmationWindow
-	MinerConfirmationWindow:       100,
-	Deployments: [DefinedDeployments]ConsensusDeployment{
-		DeploymentTestDummy: {
-			BitNumber:  28,
-			StartTime:  0,             // Always available for vote
-			ExpireTime: math.MaxInt64, // Never expires
-		},
-		DeploymentCSV: {
-			BitNumber:  0,
-			StartTime:  0,             // Always available for vote
-			ExpireTime: math.MaxInt64, // Never expires
-		},
-		DeploymentSegwit: {
-			BitNumber:  1,
-			StartTime:  0,             // Always available for vote
-			ExpireTime: math.MaxInt64, // Never expires.
-		},
+var VertcoinGenesisBlock = wire.MsgBlock{
+	Header: wire.BlockHeader{
+		Version:    1,
+		PrevBlock:  chainhash.Hash{}, // empty
+		MerkleRoot: VertcoinMerkleRoot,
+		Timestamp:  time.Unix(1389311371, 0), // later
+		Bits:       0x1e0ffff0,
+		Nonce:      5749262,
 	},
-
-	// Mempool parameters
-	RelayNonStdTxs: true,
-
-	// Human-readable part for Bech32 encoded segwit addresses, as defined in
-	// BIP 173.
-	Bech32HRPSegwit: "sltc", // always lsb for sim net
-
-	// Address encoding magics
-	PubKeyHashAddrID:        0x3f, // starts with S
-	ScriptHashAddrID:        0x7b, // starts with s
-	PrivateKeyID:            0x64, // starts with 4 (uncompressed) or F (compressed)
-	WitnessPubKeyHashAddrID: 0x19, // starts with Gg
-	WitnessScriptHashAddrID: 0x28, // starts with ?
-
-	// BIP32 hierarchical deterministic extended key magics
-	HDPrivateKeyID: [4]byte{0x04, 0x20, 0xb9, 0x00}, // starts with sprv
-	HDPublicKeyID:  [4]byte{0x04, 0x20, 0xbd, 0x3a}, // starts with spub
-
-	// BIP44 coin type used in the hierarchical deterministic path for
-	// address generation.
-	HDCoinType: 115, // ASCII for s
 }
 
 var (
 	// ErrDuplicateNet describes an error where the parameters for a Litecoin
 	// network could not be set due to the network already being a standard
 	// network or previously-registered into this package.
-	ErrDuplicateNet = errors.New("duplicate Litecoin network")
+	ErrDuplicateNet = errors.New("duplicate Vertcoin network")
 
 	// ErrUnknownHDKeyID describes an error where the provided id which
 	// is intended to identify the network for a hierarchical deterministic
@@ -689,8 +579,6 @@ func newHashFromStr(hexStr string) *chainhash.Hash {
 
 func init() {
 	// Register all default networks when the package is initialized.
-	mustRegister(&MainNetParams)
-	mustRegister(&TestNet4Params)
-	mustRegister(&RegressionNetParams)
-	mustRegister(&SimNetParams)
+	mustRegister(&VertcoinParams)
+	mustRegister(&VertcoinTestNetParams)
 }
