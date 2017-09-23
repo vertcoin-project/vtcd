@@ -7,11 +7,11 @@ package main
 import (
 	"sync/atomic"
 
-	"github.com/ltcsuite/ltcd/blockchain"
-	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
-	"github.com/ltcsuite/ltcd/mempool"
-	"github.com/ltcsuite/ltcd/peer"
-	"github.com/ltcsuite/ltcd/wire"
+	"github.com/vertcoin/vtcd/blockchain"
+	"github.com/vertcoin/vtcd/chaincfg/chainhash"
+	"github.com/vertcoin/vtcd/mempool"
+	"github.com/vertcoin/vtcd/peer"
+	"github.com/vertcoin/vtcd/wire"
 	"github.com/ltcsuite/ltcutil"
 )
 

@@ -9,8 +9,8 @@ import (
 	"fmt"
 	"math"
 
-	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
-	"github.com/ltcsuite/ltcd/txscript"
+	"github.com/vertcoin/vtcd/chaincfg/chainhash"
+	"github.com/vertcoin/vtcd/txscript"
 	"github.com/ltcsuite/ltcutil"
 )
 

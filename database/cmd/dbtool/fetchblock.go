@@ -9,8 +9,8 @@ import (
 	"errors"
 	"time"
 
-	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
-	"github.com/ltcsuite/ltcd/database"
+	"github.com/vertcoin/vtcd/chaincfg/chainhash"
+	"github.com/vertcoin/vtcd/database"
 )
 
 // fetchBlockCmd defines the configuration options for the fetchblock command.

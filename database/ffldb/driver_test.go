@@ -12,9 +12,9 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/ltcsuite/ltcd/chaincfg"
-	"github.com/ltcsuite/ltcd/database"
-	"github.com/ltcsuite/ltcd/database/ffldb"
+	"github.com/vertcoin/vtcd/chaincfg"
+	"github.com/vertcoin/vtcd/database"
+	"github.com/vertcoin/vtcd/database/ffldb"
 	"github.com/ltcsuite/ltcutil"
 )
 

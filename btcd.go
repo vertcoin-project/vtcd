@@ -15,9 +15,9 @@ import (
 	"runtime/debug"
 	"runtime/pprof"
 
-	"github.com/ltcsuite/ltcd/blockchain/indexers"
-	"github.com/ltcsuite/ltcd/database"
-	"github.com/ltcsuite/ltcd/limits"
+	"github.com/vertcoin/vtcd/blockchain/indexers"
+	"github.com/vertcoin/vtcd/database"
+	"github.com/vertcoin/vtcd/limits"
 )
 
 var (

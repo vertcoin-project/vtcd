@@ -9,7 +9,7 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/ltcsuite/ltcd/txscript"
+	"github.com/vertcoin/vtcd/txscript"
 )
 
 // TestCheckBlockScripts ensures that validating the all of the scripts in a

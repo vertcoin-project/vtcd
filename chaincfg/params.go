@@ -11,8 +11,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
-	"github.com/ltcsuite/ltcd/wire"
+	"github.com/vertcoin/vtcd/chaincfg/chainhash"
+	"github.com/vertcoin/vtcd/wire"
 )
 
 // These variables are the chain proof-of-work limit parameters for each default

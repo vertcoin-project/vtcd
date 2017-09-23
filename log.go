@@ -13,16 +13,16 @@ import (
 
 	"github.com/btcsuite/btclog"
 	"github.com/jrick/logrotate/rotator"
-	"github.com/ltcsuite/ltcd/addrmgr"
-	"github.com/ltcsuite/ltcd/blockchain"
-	"github.com/ltcsuite/ltcd/blockchain/indexers"
-	"github.com/ltcsuite/ltcd/connmgr"
-	"github.com/ltcsuite/ltcd/database"
-	"github.com/ltcsuite/ltcd/mempool"
-	"github.com/ltcsuite/ltcd/mining"
-	"github.com/ltcsuite/ltcd/mining/cpuminer"
-	"github.com/ltcsuite/ltcd/peer"
-	"github.com/ltcsuite/ltcd/txscript"
+	"github.com/vertcoin/vtcd/addrmgr"
+	"github.com/vertcoin/vtcd/blockchain"
+	"github.com/vertcoin/vtcd/blockchain/indexers"
+	"github.com/vertcoin/vtcd/connmgr"
+	"github.com/vertcoin/vtcd/database"
+	"github.com/vertcoin/vtcd/mempool"
+	"github.com/vertcoin/vtcd/mining"
+	"github.com/vertcoin/vtcd/mining/cpuminer"
+	"github.com/vertcoin/vtcd/peer"
+	"github.com/vertcoin/vtcd/txscript"
 )
 
 // logWriter implements an io.Writer that outputs to both standard output and

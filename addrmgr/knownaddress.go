@@ -7,7 +7,7 @@ package addrmgr
 import (
 	"time"
 
-	"github.com/ltcsuite/ltcd/wire"
+	"github.com/vertcoin/vtcd/wire"
 )
 
 // KnownAddress tracks information about a known network address that is used

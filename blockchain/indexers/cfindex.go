@@ -7,10 +7,10 @@ package indexers
 import (
 	"errors"
 
-	"github.com/ltcsuite/ltcd/blockchain"
-	"github.com/ltcsuite/ltcd/chaincfg"
-	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
-	"github.com/ltcsuite/ltcd/database"
+	"github.com/vertcoin/vtcd/blockchain"
+	"github.com/vertcoin/vtcd/chaincfg"
+	"github.com/vertcoin/vtcd/chaincfg/chainhash"
+	"github.com/vertcoin/vtcd/database"
 	"github.com/ltcsuite/ltcutil"
 	"github.com/ltcsuite/ltcutil/gcs"
 	"github.com/ltcsuite/ltcutil/gcs/builder"

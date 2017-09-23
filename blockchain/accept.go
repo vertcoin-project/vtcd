@@ -5,7 +5,7 @@
 package blockchain
 
 import (
-	"github.com/ltcsuite/ltcd/database"
+	"github.com/vertcoin/vtcd/database"
 	"github.com/ltcsuite/ltcutil"
 )
 

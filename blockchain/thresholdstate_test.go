@@ -7,7 +7,7 @@ package blockchain
 import (
 	"testing"
 
-	"github.com/ltcsuite/ltcd/chaincfg/chainhash"
+	"github.com/vertcoin/vtcd/chaincfg/chainhash"
 )
 
 // TestThresholdStateStringer tests the stringized output for the
