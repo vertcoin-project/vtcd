@@ -22,8 +22,8 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/wire"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/wire"
 )
 
 // AddrManager provides a concurrency safe address manager for caching potential

@@ -5,8 +5,8 @@
 package blockchain
 
 import (
-	"github.com/vertcoin/vtcd/btcec"
-	"github.com/vertcoin/vtcd/txscript"
+	"github.com/devwarrior777/xzcd/btcec"
+	"github.com/devwarrior777/xzcd/txscript"
 )
 
 // -----------------------------------------------------------------------------

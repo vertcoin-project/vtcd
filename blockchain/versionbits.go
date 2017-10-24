@@ -7,7 +7,7 @@ package blockchain
 import (
 	"math"
 
-	"github.com/vertcoin/vtcd/chaincfg"
+	"github.com/devwarrior777/xzcd/chaincfg"
 )
 
 const (

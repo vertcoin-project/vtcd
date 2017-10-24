@@ -12,10 +12,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/vertcoin/vtcd/chaincfg"
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/peer"
-	"github.com/vertcoin/vtcd/wire"
+	"github.com/devwarrior777/xzcd/chaincfg"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/peer"
+	"github.com/devwarrior777/xzcd/wire"
 	"github.com/btcsuite/go-socks/socks"
 )
 

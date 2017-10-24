@@ -10,10 +10,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/vertcoin/vtcd/chaincfg"
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/wire"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/chaincfg"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/wire"
+	"github.com/devwarrior777/xzcutil"
 )
 
 // TestSequenceLocksActive tests the SequenceLockActive function to ensure it
@@ -77,7 +77,7 @@ func TestCheckConnectBlock(t *testing.T) {
 
 	// The genesis block should fail to connect since it's already inserted.
 	genesisBlock := chaincfg.MainNetParams.GenesisBlock
-	err = chain.CheckConnectBlock(vtcutil.NewBlock(genesisBlock))
+	err = chain.CheckConnectBlock(xzcutil.NewBlock(genesisBlock))
 	if err == nil {
 		t.Errorf("CheckConnectBlock: Did not received expected error")
 	}
@@ -87,7 +87,7 @@ func TestCheckConnectBlock(t *testing.T) {
 // as expected.
 func TestCheckBlockSanity(t *testing.T) {
 	powLimit := chaincfg.MainNetParams.PowLimit
-	block := vtcutil.NewBlock(&Block100000)
+	block := xzcutil.NewBlock(&Block100000)
 	timeSource := NewMedianTime()
 	err := CheckBlockSanity(block, powLimit, timeSource)
 	if err != nil {
@@ -148,7 +148,7 @@ func TestCheckSerializedHeight(t *testing.T) {
 	for i, test := range tests {
 		msgTx := coinbaseTx.Copy()
 		msgTx.TxIn[0].SignatureScript = test.sigScript
-		tx := vtcutil.NewTx(msgTx)
+		tx := xzcutil.NewTx(msgTx)
 
 		err := checkSerializedHeight(tx, test.wantHeight)
 		if reflect.TypeOf(err) != reflect.TypeOf(test.err) {

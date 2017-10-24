@@ -7,12 +7,12 @@ package main
 import (
 	"sync/atomic"
 
-	"github.com/vertcoin/vtcd/blockchain"
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/mempool"
-	"github.com/vertcoin/vtcd/peer"
-	"github.com/vertcoin/vtcd/wire"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/blockchain"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/mempool"
+	"github.com/devwarrior777/xzcd/peer"
+	"github.com/devwarrior777/xzcd/wire"
+	"github.com/devwarrior777/xzcutil"
 )
 
 // rpcPeer provides a peer for use with the RPC server and implements the
@@ -246,7 +246,7 @@ func (b *rpcSyncMgr) IsCurrent() bool {
 //
 // This function is safe for concurrent access and is part of the
 // rpcserverSyncManager interface implementation.
-func (b *rpcSyncMgr) SubmitBlock(block *vtcutil.Block, flags blockchain.BehaviorFlags) (bool, error) {
+func (b *rpcSyncMgr) SubmitBlock(block *xzcutil.Block, flags blockchain.BehaviorFlags) (bool, error) {
 	return b.blockMgr.ProcessBlock(block, flags)
 }
 

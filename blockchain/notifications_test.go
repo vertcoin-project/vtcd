@@ -7,7 +7,7 @@ package blockchain
 import (
 	"testing"
 
-	"github.com/vertcoin/vtcd/chaincfg"
+	"github.com/devwarrior777/xzcd/chaincfg"
 )
 
 // TestNotifications ensures that notification callbacks are fired on events.

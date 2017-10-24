@@ -5,8 +5,8 @@
 package mempool
 
 import (
-	"github.com/vertcoin/vtcd/blockchain"
-	"github.com/vertcoin/vtcd/wire"
+	"github.com/devwarrior777/xzcd/blockchain"
+	"github.com/devwarrior777/xzcd/wire"
 )
 
 // RuleError identifies a rule violation.  It is used to indicate that

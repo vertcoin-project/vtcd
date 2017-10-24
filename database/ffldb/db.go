@@ -14,11 +14,11 @@ import (
 	"sort"
 	"sync"
 
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/database"
-	"github.com/vertcoin/vtcd/database/internal/treap"
-	"github.com/vertcoin/vtcd/wire"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/database"
+	"github.com/devwarrior777/xzcd/database/internal/treap"
+	"github.com/devwarrior777/xzcd/wire"
+	"github.com/devwarrior777/xzcutil"
 	"github.com/btcsuite/goleveldb/leveldb"
 	"github.com/btcsuite/goleveldb/leveldb/comparer"
 	ldberrors "github.com/btcsuite/goleveldb/leveldb/errors"
@@ -1146,7 +1146,7 @@ func (tx *transaction) hasBlock(hash *chainhash.Hash) bool {
 //   - ErrTxClosed if the transaction has already been closed
 //
 // This function is part of the database.Tx interface implementation.
-func (tx *transaction) StoreBlock(block *vtcutil.Block) error {
+func (tx *transaction) StoreBlock(block *xzcutil.Block) error {
 	// Ensure transaction state is valid.
 	if err := tx.checkClosed(); err != nil {
 		return err

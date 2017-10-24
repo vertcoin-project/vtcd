@@ -7,12 +7,12 @@ package blockchain
 import (
 	"testing"
 
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcutil"
 )
 
 // TestMerkle tests the BuildMerkleTreeStore API.
 func TestMerkle(t *testing.T) {
-	block := vtcutil.NewBlock(&Block100000)
+	block := xzcutil.NewBlock(&Block100000)
 	merkles := BuildMerkleTreeStore(block.Transactions(), false)
 	calculatedMerkleRoot := merkles[len(merkles)-1]
 	wantMerkle := &Block100000.Header.MerkleRoot

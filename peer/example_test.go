@@ -9,9 +9,9 @@ import (
 	"net"
 	"time"
 
-	"github.com/vertcoin/vtcd/chaincfg"
-	"github.com/vertcoin/vtcd/peer"
-	"github.com/vertcoin/vtcd/wire"
+	"github.com/devwarrior777/xzcd/chaincfg"
+	"github.com/devwarrior777/xzcd/peer"
+	"github.com/devwarrior777/xzcd/wire"
 )
 
 // mockRemotePeer creates a basic inbound peer listening on the simnet port for

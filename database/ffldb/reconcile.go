@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"hash/crc32"
 
-	"github.com/vertcoin/vtcd/database"
+	"github.com/devwarrior777/xzcd/database"
 )
 
 // The serialized write cursor location format is:

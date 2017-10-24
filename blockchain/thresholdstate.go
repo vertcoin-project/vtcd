@@ -7,7 +7,7 @@ package blockchain
 import (
 	"fmt"
 
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
 )
 
 // ThresholdState define the various threshold states used when voting on

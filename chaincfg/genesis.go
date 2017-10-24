@@ -7,8 +7,8 @@ package chaincfg
 import (
 	"time"
 
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/wire"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/wire"
 )
 
 // genesisCoinbaseTx is the coinbase transaction for the genesis blocks for

@@ -10,16 +10,16 @@ import (
 	"runtime"
 	"time"
 
-	"github.com/vertcoin/vtcd/txscript"
-	"github.com/vertcoin/vtcd/wire"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/txscript"
+	"github.com/devwarrior777/xzcd/wire"
+	"github.com/devwarrior777/xzcutil"
 )
 
 // txValidateItem holds a transaction along with which input to validate.
 type txValidateItem struct {
 	txInIndex int
 	txIn      *wire.TxIn
-	tx        *vtcutil.Tx
+	tx        *xzcutil.Tx
 	sigHashes *txscript.TxSigHashes
 }
 
@@ -202,7 +202,7 @@ func newTxValidator(utxoView *UtxoViewpoint, flags txscript.ScriptFlags,
 
 // ValidateTransactionScripts validates the scripts for the passed transaction
 // using multiple goroutines.
-func ValidateTransactionScripts(tx *vtcutil.Tx, utxoView *UtxoViewpoint,
+func ValidateTransactionScripts(tx *xzcutil.Tx, utxoView *UtxoViewpoint,
 	flags txscript.ScriptFlags, sigCache *txscript.SigCache,
 	hashCache *txscript.HashCache) error {
 
@@ -254,7 +254,7 @@ func ValidateTransactionScripts(tx *vtcutil.Tx, utxoView *UtxoViewpoint,
 
 // checkBlockScripts executes and validates the scripts for all transactions in
 // the passed block using multiple goroutines.
-func checkBlockScripts(block *vtcutil.Block, utxoView *UtxoViewpoint,
+func checkBlockScripts(block *xzcutil.Block, utxoView *UtxoViewpoint,
 	scriptFlags txscript.ScriptFlags, sigCache *txscript.SigCache,
 	hashCache *txscript.HashCache) error {
 

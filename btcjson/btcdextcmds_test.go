@@ -12,7 +12,7 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/vertcoin/vtcd/btcjson"
+	"github.com/devwarrior777/xzcd/btcjson"
 )
 
 // TestBtcdExtCmds tests all of the ltcd extended commands marshal and unmarshal

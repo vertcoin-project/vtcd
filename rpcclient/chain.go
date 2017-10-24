@@ -10,9 +10,9 @@ import (
 	"encoding/hex"
 	"encoding/json"
 
-	"github.com/vertcoin/vtcd/btcjson"
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/wire"
+	"github.com/devwarrior777/xzcd/btcjson"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/wire"
 )
 
 // FutureGetBestBlockHashResult is a future promise to deliver the result of a

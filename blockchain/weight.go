@@ -7,8 +7,8 @@ package blockchain
 import (
 	"fmt"
 
-	"github.com/vertcoin/vtcd/txscript"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/txscript"
+	"github.com/devwarrior777/xzcutil"
 )
 
 const (
@@ -40,7 +40,7 @@ const (
 // Currently the weight metric is simply the sum of the block's serialized size
 // without any witness data scaled proportionally by the WitnessScaleFactor,
 // and the block's serialized size including any witness data.
-func GetBlockWeight(blk *vtcutil.Block) int64 {
+func GetBlockWeight(blk *xzcutil.Block) int64 {
 	msgBlock := blk.MsgBlock()
 
 	baseSize := msgBlock.SerializeSizeStripped()
@@ -55,7 +55,7 @@ func GetBlockWeight(blk *vtcutil.Block) int64 {
 // transactions's serialized size without any witness data scaled
 // proportionally by the WitnessScaleFactor, and the transaction's serialized
 // size including any witness data.
-func GetTransactionWeight(tx *vtcutil.Tx) int64 {
+func GetTransactionWeight(tx *xzcutil.Tx) int64 {
 	msgTx := tx.MsgTx()
 
 	baseSize := msgTx.SerializeSizeStripped()
@@ -71,7 +71,7 @@ func GetTransactionWeight(tx *vtcutil.Tx) int64 {
 // legacy sig op count scaled according to the WitnessScaleFactor, the sig op
 // count for all p2sh inputs scaled by the WitnessScaleFactor, and finally the
 // unscaled sig op count for any inputs spending witness programs.
-func GetSigOpCost(tx *vtcutil.Tx, isCoinBaseTx bool, utxoView *UtxoViewpoint,
+func GetSigOpCost(tx *xzcutil.Tx, isCoinBaseTx bool, utxoView *UtxoViewpoint,
 	bip16, segWit bool) (int, error) {
 
 	numSigOps := CountSigOps(tx) * WitnessScaleFactor

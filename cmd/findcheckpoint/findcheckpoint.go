@@ -9,10 +9,10 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/vertcoin/vtcd/blockchain"
-	"github.com/vertcoin/vtcd/chaincfg"
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/database"
+	"github.com/devwarrior777/xzcd/blockchain"
+	"github.com/devwarrior777/xzcd/chaincfg"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/database"
 )
 
 const blockDbNamePrefix = "blocks"

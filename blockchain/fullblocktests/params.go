@@ -9,9 +9,9 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/vertcoin/vtcd/chaincfg"
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/wire"
+	"github.com/devwarrior777/xzcd/chaincfg"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/wire"
 )
 
 // newHashFromStr converts the passed big-endian hex string into a

@@ -12,10 +12,10 @@ import (
 	"runtime"
 	"testing"
 
-	"github.com/vertcoin/vtcd/chaincfg"
-	"github.com/vertcoin/vtcd/database"
-	"github.com/vertcoin/vtcd/database/ffldb"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/chaincfg"
+	"github.com/devwarrior777/xzcd/database"
+	"github.com/devwarrior777/xzcd/database/ffldb"
+	"github.com/devwarrior777/xzcutil"
 )
 
 // dbType is the database type name for this driver.
@@ -171,7 +171,7 @@ func TestPersistence(t *testing.T) {
 		"b1key2": "foo2",
 		"b1key3": "foo3",
 	}
-	genesisBlock := vtcutil.NewBlock(chaincfg.MainNetParams.GenesisBlock)
+	genesisBlock := xzcutil.NewBlock(chaincfg.MainNetParams.GenesisBlock)
 	genesisHash := chaincfg.MainNetParams.GenesisHash
 	err = db.Update(func(tx database.Tx) error {
 		metadataBucket := tx.Metadata()

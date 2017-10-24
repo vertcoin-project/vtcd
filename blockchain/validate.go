@@ -11,11 +11,11 @@ import (
 	"math/big"
 	"time"
 
-	"github.com/vertcoin/vtcd/chaincfg"
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/txscript"
-	"github.com/vertcoin/vtcd/wire"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/chaincfg"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/txscript"
+	"github.com/devwarrior777/xzcd/wire"
+	"github.com/devwarrior777/xzcutil"
 )
 
 const (
@@ -40,7 +40,7 @@ const (
 
 	// baseSubsidy is the starting subsidy amount for mined blocks.  This
 	// value is halved every SubsidyHalvingInterval blocks.
-	baseSubsidy = 50 * vtcutil.SatoshiPerBitcoin
+	baseSubsidy = 50 * xzcutil.SatoshiPerBitcoin
 )
 
 var (
@@ -110,7 +110,7 @@ func IsCoinBaseTx(msgTx *wire.MsgTx) bool {
 //
 // This function only differs from IsCoinBaseTx in that it works with a higher
 // level util transaction as opposed to a raw wire transaction.
-func IsCoinBase(tx *vtcutil.Tx) bool {
+func IsCoinBase(tx *xzcutil.Tx) bool {
 	return IsCoinBaseTx(tx.MsgTx())
 }
 
@@ -132,7 +132,7 @@ func SequenceLockActive(sequenceLock *SequenceLock, blockHeight int32,
 }
 
 // IsFinalizedTransaction determines whether or not a transaction is finalized.
-func IsFinalizedTransaction(tx *vtcutil.Tx, blockHeight int32, blockTime time.Time) bool {
+func IsFinalizedTransaction(tx *xzcutil.Tx, blockHeight int32, blockTime time.Time) bool {
 	msgTx := tx.MsgTx()
 
 	// Lock time of zero means the transaction is finalized.
@@ -202,7 +202,7 @@ func CalcBlockSubsidy(height int32, chainParams *chaincfg.Params) int64 {
 
 // CheckTransactionSanity performs some preliminary checks on a transaction to
 // ensure it is sane.  These checks are context free.
-func CheckTransactionSanity(tx *vtcutil.Tx) error {
+func CheckTransactionSanity(tx *xzcutil.Tx) error {
 	// A transaction must have at least one input.
 	msgTx := tx.MsgTx()
 	if len(msgTx.TxIn) == 0 {
@@ -237,10 +237,10 @@ func CheckTransactionSanity(tx *vtcutil.Tx) error {
 				"value of %v", satoshi)
 			return ruleError(ErrBadTxOutValue, str)
 		}
-		if satoshi > vtcutil.MaxSatoshi {
+		if satoshi > xzcutil.MaxSatoshi {
 			str := fmt.Sprintf("transaction output value of %v is "+
 				"higher than max allowed value of %v", satoshi,
-				vtcutil.MaxSatoshi)
+				xzcutil.MaxSatoshi)
 			return ruleError(ErrBadTxOutValue, str)
 		}
 
@@ -251,14 +251,14 @@ func CheckTransactionSanity(tx *vtcutil.Tx) error {
 		if totalSatoshi < 0 {
 			str := fmt.Sprintf("total value of all transaction "+
 				"outputs exceeds max allowed value of %v",
-				vtcutil.MaxSatoshi)
+				xzcutil.MaxSatoshi)
 			return ruleError(ErrBadTxOutValue, str)
 		}
-		if totalSatoshi > vtcutil.MaxSatoshi {
+		if totalSatoshi > xzcutil.MaxSatoshi {
 			str := fmt.Sprintf("total value of all transaction "+
 				"outputs is %v which is higher than max "+
 				"allowed value of %v", totalSatoshi,
-				vtcutil.MaxSatoshi)
+				xzcutil.MaxSatoshi)
 			return ruleError(ErrBadTxOutValue, str)
 		}
 	}
@@ -343,7 +343,7 @@ func checkProofOfWork(header *wire.BlockHeader, powLimit *big.Int, flags Behavio
 // CheckProofOfWork ensures the block header bits which indicate the target
 // difficulty is in min/max range and that the block hash is less than the
 // target difficulty as claimed.
-func CheckProofOfWork(block *vtcutil.Block, powLimit *big.Int) error {
+func CheckProofOfWork(block *xzcutil.Block, powLimit *big.Int) error {
 	return checkProofOfWork(&block.MsgBlock().Header, powLimit, BFNone)
 }
 
@@ -351,7 +351,7 @@ func CheckProofOfWork(block *vtcutil.Block, powLimit *big.Int) error {
 // input and output scripts in the provided transaction.  This uses the
 // quicker, but imprecise, signature operation counting mechanism from
 // txscript.
-func CountSigOps(tx *vtcutil.Tx) int {
+func CountSigOps(tx *xzcutil.Tx) int {
 	msgTx := tx.MsgTx()
 
 	// Accumulate the number of signature operations in all transaction
@@ -376,7 +376,7 @@ func CountSigOps(tx *vtcutil.Tx) int {
 // transactions which are of the pay-to-script-hash type.  This uses the
 // precise, signature operation counting mechanism from the script engine which
 // requires access to the input transaction scripts.
-func CountP2SHSigOps(tx *vtcutil.Tx, isCoinBaseTx bool, utxoView *UtxoViewpoint) (int, error) {
+func CountP2SHSigOps(tx *xzcutil.Tx, isCoinBaseTx bool, utxoView *UtxoViewpoint) (int, error) {
 	// Coinbase transactions have no interesting inputs.
 	if isCoinBaseTx {
 		return 0, nil
@@ -470,7 +470,7 @@ func checkBlockHeaderSanity(header *wire.BlockHeader, powLimit *big.Int, timeSou
 //
 // The flags do not modify the behavior of this function directly, however they
 // are needed to pass along to checkBlockHeaderSanity.
-func checkBlockSanity(block *vtcutil.Block, powLimit *big.Int, timeSource MedianTimeSource, flags BehaviorFlags) error {
+func checkBlockSanity(block *xzcutil.Block, powLimit *big.Int, timeSource MedianTimeSource, flags BehaviorFlags) error {
 	msgBlock := block.MsgBlock()
 	header := &msgBlock.Header
 	err := checkBlockHeaderSanity(header, powLimit, timeSource, flags)
@@ -576,14 +576,14 @@ func checkBlockSanity(block *vtcutil.Block, powLimit *big.Int, timeSource Median
 
 // CheckBlockSanity performs some preliminary checks on a block to ensure it is
 // sane before continuing with block processing.  These checks are context free.
-func CheckBlockSanity(block *vtcutil.Block, powLimit *big.Int, timeSource MedianTimeSource) error {
+func CheckBlockSanity(block *xzcutil.Block, powLimit *big.Int, timeSource MedianTimeSource) error {
 	return checkBlockSanity(block, powLimit, timeSource, BFNone)
 }
 
 // ExtractCoinbaseHeight attempts to extract the height of the block from the
 // scriptSig of a coinbase transaction.  Coinbase heights are only present in
 // blocks of version 2 or later.  This was added as part of BIP0034.
-func ExtractCoinbaseHeight(coinbaseTx *vtcutil.Tx) (int32, error) {
+func ExtractCoinbaseHeight(coinbaseTx *xzcutil.Tx) (int32, error) {
 	sigScript := coinbaseTx.MsgTx().TxIn[0].SignatureScript
 	if len(sigScript) < 1 {
 		str := "the coinbase signature script for blocks of " +
@@ -623,7 +623,7 @@ func ExtractCoinbaseHeight(coinbaseTx *vtcutil.Tx) (int32, error) {
 
 // checkSerializedHeight checks if the signature script in the passed
 // transaction starts with the serialized block height of wantHeight.
-func checkSerializedHeight(coinbaseTx *vtcutil.Tx, wantHeight int32) error {
+func checkSerializedHeight(coinbaseTx *xzcutil.Tx, wantHeight int32) error {
 	serializedHeight, err := ExtractCoinbaseHeight(coinbaseTx)
 	if err != nil {
 		return err
@@ -733,7 +733,7 @@ func (b *BlockChain) checkBlockHeaderContext(header *wire.BlockHeader, prevNode 
 // for how the flags modify its behavior.
 //
 // This function MUST be called with the chain state lock held (for writes).
-func (b *BlockChain) checkBlockContext(block *vtcutil.Block, prevNode *blockNode, flags BehaviorFlags) error {
+func (b *BlockChain) checkBlockContext(block *xzcutil.Block, prevNode *blockNode, flags BehaviorFlags) error {
 	// The genesis block is valid by definition.
 	if prevNode == nil {
 		return nil
@@ -843,7 +843,7 @@ func (b *BlockChain) checkBlockContext(block *vtcutil.Block, prevNode *blockNode
 // http://r6.ca/blog/20120206T005236Z.html.
 //
 // This function MUST be called with the chain state lock held (for reads).
-func (b *BlockChain) checkBIP0030(node *blockNode, block *vtcutil.Block, view *UtxoViewpoint) error {
+func (b *BlockChain) checkBIP0030(node *blockNode, block *xzcutil.Block, view *UtxoViewpoint) error {
 	// Fetch utxo details for all of the transactions in this block.
 	// Typically, there will not be any utxos for any of the transactions.
 	fetchSet := make(map[chainhash.Hash]struct{})
@@ -881,7 +881,7 @@ func (b *BlockChain) checkBIP0030(node *blockNode, block *vtcutil.Block, view *U
 //
 // NOTE: The transaction MUST have already been sanity checked with the
 // CheckTransactionSanity function prior to calling this function.
-func CheckTransactionInputs(tx *vtcutil.Tx, txHeight int32, utxoView *UtxoViewpoint, chainParams *chaincfg.Params) (int64, error) {
+func CheckTransactionInputs(tx *xzcutil.Tx, txHeight int32, utxoView *UtxoViewpoint, chainParams *chaincfg.Params) (int64, error) {
 	// Coinbase transactions have no inputs.
 	if IsCoinBase(tx) {
 		return 0, nil
@@ -928,14 +928,14 @@ func CheckTransactionInputs(tx *vtcutil.Tx, txHeight int32, utxoView *UtxoViewpo
 		originTxSatoshi := utxoEntry.AmountByIndex(originTxIndex)
 		if originTxSatoshi < 0 {
 			str := fmt.Sprintf("transaction output has negative "+
-				"value of %v", vtcutil.Amount(originTxSatoshi))
+				"value of %v", xzcutil.Amount(originTxSatoshi))
 			return 0, ruleError(ErrBadTxOutValue, str)
 		}
-		if originTxSatoshi > vtcutil.MaxSatoshi {
+		if originTxSatoshi > xzcutil.MaxSatoshi {
 			str := fmt.Sprintf("transaction output value of %v is "+
 				"higher than max allowed value of %v",
-				vtcutil.Amount(originTxSatoshi),
-				vtcutil.MaxSatoshi)
+				xzcutil.Amount(originTxSatoshi),
+				xzcutil.MaxSatoshi)
 			return 0, ruleError(ErrBadTxOutValue, str)
 		}
 
@@ -945,11 +945,11 @@ func CheckTransactionInputs(tx *vtcutil.Tx, txHeight int32, utxoView *UtxoViewpo
 		lastSatoshiIn := totalSatoshiIn
 		totalSatoshiIn += originTxSatoshi
 		if totalSatoshiIn < lastSatoshiIn ||
-			totalSatoshiIn > vtcutil.MaxSatoshi {
+			totalSatoshiIn > xzcutil.MaxSatoshi {
 			str := fmt.Sprintf("total value of all transaction "+
 				"inputs is %v which is higher than max "+
 				"allowed value of %v", totalSatoshiIn,
-				vtcutil.MaxSatoshi)
+				xzcutil.MaxSatoshi)
 			return 0, ruleError(ErrBadTxOutValue, str)
 		}
 	}
@@ -994,7 +994,7 @@ func CheckTransactionInputs(tx *vtcutil.Tx, txHeight int32, utxoView *UtxoViewpo
 // checks performed by this function.
 //
 // This function MUST be called with the chain state lock held (for writes).
-func (b *BlockChain) checkConnectBlock(node *blockNode, block *vtcutil.Block, view *UtxoViewpoint, stxos *[]spentTxOut) error {
+func (b *BlockChain) checkConnectBlock(node *blockNode, block *xzcutil.Block, view *UtxoViewpoint, stxos *[]spentTxOut) error {
 	// If the side chain blocks end up in the database, a call to
 	// CheckBlockSanity should be done here in case a previous version
 	// allowed a block that is no longer valid.  However, since the
@@ -1255,7 +1255,7 @@ func (b *BlockChain) checkConnectBlock(node *blockNode, block *vtcutil.Block, vi
 // transaction script validation.
 //
 // This function is safe for concurrent access.
-func (b *BlockChain) CheckConnectBlock(block *vtcutil.Block) error {
+func (b *BlockChain) CheckConnectBlock(block *xzcutil.Block) error {
 	b.chainLock.Lock()
 	defer b.chainLock.Unlock()
 

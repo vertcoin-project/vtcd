@@ -13,10 +13,10 @@ import (
 	"testing"
 	"time"
 
-	"github.com/vertcoin/vtcd/blockchain"
-	"github.com/vertcoin/vtcd/chaincfg"
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/integration/rpctest"
+	"github.com/devwarrior777/xzcd/blockchain"
+	"github.com/devwarrior777/xzcd/chaincfg"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/integration/rpctest"
 )
 
 const (

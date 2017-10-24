@@ -7,10 +7,10 @@ package blockchain
 import (
 	"fmt"
 
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/database"
-	"github.com/vertcoin/vtcd/txscript"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/database"
+	"github.com/devwarrior777/xzcd/txscript"
+	"github.com/devwarrior777/xzcutil"
 )
 
 // utxoOutput houses details about an individual unspent transaction output such
@@ -227,7 +227,7 @@ func (view *UtxoViewpoint) LookupEntry(txHash *chainhash.Hash) *UtxoEntry {
 // unspendable to the view.  When the view already has entries for any of the
 // outputs, they are simply marked unspent.  All fields will be updated for
 // existing entries since it's possible it has changed during a reorg.
-func (view *UtxoViewpoint) AddTxOuts(tx *vtcutil.Tx, blockHeight int32) {
+func (view *UtxoViewpoint) AddTxOuts(tx *xzcutil.Tx, blockHeight int32) {
 	// When there are not already any utxos associated with the transaction,
 	// add a new entry for it to the view.
 	entry := view.LookupEntry(tx.Hash())
@@ -275,7 +275,7 @@ func (view *UtxoViewpoint) AddTxOuts(tx *vtcutil.Tx, blockHeight int32) {
 // spent.  In addition, when the 'stxos' argument is not nil, it will be updated
 // to append an entry for each spent txout.  An error will be returned if the
 // view does not contain the required utxos.
-func (view *UtxoViewpoint) connectTransaction(tx *vtcutil.Tx, blockHeight int32, stxos *[]spentTxOut) error {
+func (view *UtxoViewpoint) connectTransaction(tx *xzcutil.Tx, blockHeight int32, stxos *[]spentTxOut) error {
 	// Coinbase transactions don't have any inputs to spend.
 	if IsCoinBase(tx) {
 		// Add the transaction's outputs as available utxos.
@@ -332,7 +332,7 @@ func (view *UtxoViewpoint) connectTransaction(tx *vtcutil.Tx, blockHeight int32,
 // spend as spent, and setting the best hash for the view to the passed block.
 // In addition, when the 'stxos' argument is not nil, it will be updated to
 // append an entry for each spent txout.
-func (view *UtxoViewpoint) connectTransactions(block *vtcutil.Block, stxos *[]spentTxOut) error {
+func (view *UtxoViewpoint) connectTransactions(block *xzcutil.Block, stxos *[]spentTxOut) error {
 	for _, tx := range block.Transactions() {
 		err := view.connectTransaction(tx, block.Height(), stxos)
 		if err != nil {
@@ -350,7 +350,7 @@ func (view *UtxoViewpoint) connectTransactions(block *vtcutil.Block, stxos *[]sp
 // created by the passed block, restoring all utxos the transactions spent by
 // using the provided spent txo information, and setting the best hash for the
 // view to the block before the passed block.
-func (view *UtxoViewpoint) disconnectTransactions(block *vtcutil.Block, stxos []spentTxOut) error {
+func (view *UtxoViewpoint) disconnectTransactions(block *xzcutil.Block, stxos []spentTxOut) error {
 	// Sanity check the correct number of stxos are provided.
 	if len(stxos) != countSpentOutputs(block) {
 		return AssertError("disconnectTransactions called with bad " +
@@ -518,7 +518,7 @@ func (view *UtxoViewpoint) fetchUtxos(db database.DB, txSet map[chainhash.Hash]s
 // by the transactions in the given block into the view from the database as
 // needed.  In particular, referenced entries that are earlier in the block are
 // added to the view and entries that are already in the view are not modified.
-func (view *UtxoViewpoint) fetchInputUtxos(db database.DB, block *vtcutil.Block) error {
+func (view *UtxoViewpoint) fetchInputUtxos(db database.DB, block *xzcutil.Block) error {
 	// Build a map of in-flight transactions because some of the inputs in
 	// this block could be referencing other transactions earlier in this
 	// block which are not yet in the chain.
@@ -581,7 +581,7 @@ func NewUtxoViewpoint() *UtxoViewpoint {
 // returned view can be examined for duplicate unspent transaction outputs.
 //
 // This function is safe for concurrent access however the returned view is NOT.
-func (b *BlockChain) FetchUtxoView(tx *vtcutil.Tx) (*UtxoViewpoint, error) {
+func (b *BlockChain) FetchUtxoView(tx *xzcutil.Tx) (*UtxoViewpoint, error) {
 	b.chainLock.RLock()
 	defer b.chainLock.RUnlock()
 

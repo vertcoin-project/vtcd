@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/btcsuite/btclog"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcutil"
 )
 
 // blockProgressLogger provides periodic logging for other services in order
@@ -36,7 +36,7 @@ func newBlockProgressLogger(progressMessage string, logger btclog.Logger) *block
 // LogBlockHeight logs a new block height as an information message to show
 // progress to the user. In order to prevent spam, it limits logging to one
 // message every 10 seconds with duration and totals included.
-func (b *blockProgressLogger) LogBlockHeight(block *vtcutil.Block) {
+func (b *blockProgressLogger) LogBlockHeight(block *xzcutil.Block) {
 	b.Lock()
 	defer b.Unlock()
 

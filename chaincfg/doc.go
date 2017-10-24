@@ -25,8 +25,8 @@
 //          "fmt"
 //          "log"
 //
-//          "github.com/vertcoin/vtcutil"
-//          "github.com/vertcoin/vtcd/chaincfg"
+//          "github.com/devwarrior777/xzcutil"
+//          "github.com/devwarrior777/xzcd/chaincfg"
 //  )
 //
 //  var testnet = flag.Bool("testnet", false, "operate on the testnet Bitcoin network")
@@ -46,7 +46,7 @@
 //
 //          // Create and print new payment address, specific to the active network.
 //          pubKeyHash := make([]byte, 20)
-//          addr, err := vtcutil.NewAddressPubKeyHash(pubKeyHash, chainParams)
+//          addr, err := xzcutil.NewAddressPubKeyHash(pubKeyHash, chainParams)
 //          if err != nil {
 //                  log.Fatal(err)
 //          }

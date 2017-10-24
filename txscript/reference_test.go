@@ -15,9 +15,9 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/wire"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/wire"
+	"github.com/devwarrior777/xzcutil"
 )
 
 // scriptTestName returns a descriptive test name for the given reference script
@@ -347,7 +347,7 @@ func testScripts(t *testing.T, tests [][]interface{}, useSigCache bool) {
 
 		var (
 			witness  wire.TxWitness
-			inputAmt vtcutil.Amount
+			inputAmt xzcutil.Amount
 		)
 
 		// When the first field of the test data is a slice it contains
@@ -367,7 +367,7 @@ func testScripts(t *testing.T, tests [][]interface{}, useSigCache bool) {
 				continue
 			}
 
-			inputAmt, err = vtcutil.NewAmount(witnessData[len(witnessData)-1].(float64))
+			inputAmt, err = xzcutil.NewAmount(witnessData[len(witnessData)-1].(float64))
 			if err != nil {
 				t.Errorf("%s: can't parse input amt: %v",
 					name, err)
@@ -547,7 +547,7 @@ testloop:
 			continue
 		}
 
-		tx, err := vtcutil.NewTxFromBytes(serializedTx)
+		tx, err := xzcutil.NewTxFromBytes(serializedTx)
 		if err != nil {
 			t.Errorf("bad test (arg 2 not msgtx %v) %d: %v", err,
 				i, test)
@@ -702,7 +702,7 @@ testloop:
 			continue
 		}
 
-		tx, err := vtcutil.NewTxFromBytes(serializedTx)
+		tx, err := xzcutil.NewTxFromBytes(serializedTx)
 		if err != nil {
 			t.Errorf("bad test (arg 2 not msgtx %v) %d: %v", err,
 				i, test)

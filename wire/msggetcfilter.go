@@ -7,7 +7,7 @@ package wire
 import (
 	"io"
 
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
 )
 
 type MsgGetCFilter struct {
