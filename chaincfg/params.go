@@ -225,18 +225,18 @@ type Params struct {
 	HDCoinType uint32
 }
 
-var VertcoinTestNetParams = Params{
-	Name:        "vtctest",
+var ZcoinTestNetParams = Params{
+	Name:        "xzctest",
 	DefaultPort: "15889",
-	Net:         wire.VertTestNet,
+	Net:         wire.ZcoinTestNet,
 	DNSSeeds: []DNSSeed{
-		{"fr1.vtconline.org", false},
+		{"fr1.xzconline.org", false},
 	},
 
 	// Chain parameters
 
-	GenesisBlock:             &VertcoinTestnetGenesisBlock,
-	GenesisHash:              &VertcoinTestnetGenesisHash,
+	GenesisBlock:             &ZcoinTestnetGenesisBlock,
+	GenesisHash:              &ZcoinTestnetGenesisHash,
 	PowLimit:                 testNet4PowLimit,
 	PowLimitBits:             0x1e0fffff,
 	CoinbaseMaturity:         120,
@@ -268,21 +268,21 @@ var VertcoinTestNetParams = Params{
 	HDCoinType: 65536,
 }
 
-var VertcoinParams = Params{
-	Name:        "vtc",
+var ZcoinParams = Params{
+	Name:        "xzc",
 	DefaultPort: "5889",
-	Net:         wire.VertcoinNet,
+	Net:         wire.ZcoinNet,
 	DNSSeeds: []DNSSeed{
-		{"fr1.vtconline.org", false},
-		{"uk1.vtconline.org", false},
-		{"useast1.vtconline.org", false},
+		{"fr1.xzconline.org", false},
+		{"uk1.xzconline.org", false},
+		{"useast1.xzconline.org", false},
 		{"vtc.alwayshashing.com", false},
 		{"crypto.office-on-the.net", false},
 		{"p2pool.kosmoplovci.org", false},
 	},
 
-	GenesisBlock:             &VertcoinGenesisBlock,
-	GenesisHash:              &VertcoinGenesisHash,
+	GenesisBlock:             &ZcoinGenesisBlock,
+	GenesisHash:              &ZcoinGenesisHash,
 	PowLimit:                 testNet4PowLimit,
 	PowLimitBits:             0x1e0fffff,
 	CoinbaseMaturity:         120,
@@ -383,7 +383,7 @@ var RegressionNetParams = Params{
 
 	// Human-readable part for Bech32 encoded segwit addresses, as defined in
 	// BIP 173.
-	Bech32HRPSegwit: "tvtc", // always tltc for test net
+	Bech32HRPSegwit: "txzc", // always tltc for test net
 
 	// Address encoding magics
 	PubKeyHashAddrID: 0x6f, // starts with m or n
@@ -399,53 +399,53 @@ var RegressionNetParams = Params{
 	HDCoinType: 1,
 }
 
-// VertcoinTestNetGenesisHash
-var VertcoinTestnetGenesisHash = chainhash.Hash([chainhash.HashSize]byte{
+// ZcoinTestNetGenesisHash
+var ZcoinTestnetGenesisHash = chainhash.Hash([chainhash.HashSize]byte{
 	0xc9, 0xd2, 0x7a, 0x49, 0x47, 0x27, 0x2e, 0xe3, 0xc2,
 	0xe8, 0x1a, 0x74, 0xb6, 0x79, 0xac, 0xec, 0x5d, 0x85,
 	0xa4, 0x6a, 0x97, 0x16, 0x79, 0xf0, 0xc8, 0x64, 0x7a,
 	0xeb, 0x4f, 0xf2, 0xe8, 0xce,
 })
 
-var VertcoinTestnetMerkleRoot = chainhash.Hash([chainhash.HashSize]byte{
+var ZcoinTestnetMerkleRoot = chainhash.Hash([chainhash.HashSize]byte{
 	0xe7, 0x23, 0x01, 0xfc, 0x49, 0x32, 0x3e, 0xe1, 0x51,
 	0xcf, 0x10, 0x48, 0x23, 0x0f, 0x03, 0x2c, 0xa5, 0x89,
 	0x75, 0x3b, 0xa7, 0x08, 0x62, 0x22, 0xa5, 0xc0, 0x23,
 	0xe3, 0xa0, 0x8c, 0xf3, 0x4a,
 })
 
-var VertcoinTestnetGenesisBlock = wire.MsgBlock{
+var ZcoinTestnetGenesisBlock = wire.MsgBlock{
 	Header: wire.BlockHeader{
 		Version:    1,
 		PrevBlock:  chainhash.Hash{}, // empty
-		MerkleRoot: VertcoinTestnetMerkleRoot,
+		MerkleRoot: ZcoinTestnetMerkleRoot,
 		Timestamp:  time.Unix(1481291250, 0), // later
 		Bits:       0x1e0ffff0,
 		Nonce:      915027,
 	},
 }
 
-// ==================== Vertcoin
+// ==================== Zcoin
 
-// VertcoinNetGenesisHash
-var VertcoinGenesisHash = chainhash.Hash([chainhash.HashSize]byte{
+// ZcoinNetGenesisHash
+var ZcoinGenesisHash = chainhash.Hash([chainhash.HashSize]byte{
 	0xc4, 0xf0, 0x89, 0x04, 0x11, 0x22, 0x2d, 0x49, 0x2c, 0xa1,
 	0xce, 0x0c, 0x99, 0x3a, 0x01, 0x90, 0xcb, 0xdc, 0xe2, 0x1e,
 	0x4d, 0x84, 0xc2, 0xe5, 0xb1, 0x40, 0x9d, 0xf4, 0x15, 0xa9,
 	0x96, 0x4d,
 })
 
-var VertcoinMerkleRoot = chainhash.Hash([chainhash.HashSize]byte{
+var ZcoinMerkleRoot = chainhash.Hash([chainhash.HashSize]byte{
 	0xe7, 0x23, 0x01, 0xfc, 0x49, 0x32, 0x3e, 0xe1, 0x51, 0xcf, 0x10, 0x48, 0x23, 0x0f,
 	0x03, 0x2c, 0xa5, 0x89, 0x75, 0x3b, 0xa7, 0x08, 0x62, 0x22, 0xa5, 0xc0, 0x23, 0xe3,
 	0xa0, 0x8c, 0xf3, 0x4a,
 })
 
-var VertcoinGenesisBlock = wire.MsgBlock{
+var ZcoinGenesisBlock = wire.MsgBlock{
 	Header: wire.BlockHeader{
 		Version:    1,
 		PrevBlock:  chainhash.Hash{}, // empty
-		MerkleRoot: VertcoinMerkleRoot,
+		MerkleRoot: ZcoinMerkleRoot,
 		Timestamp:  time.Unix(1389311371, 0), // later
 		Bits:       0x1e0ffff0,
 		Nonce:      5749262,
@@ -456,7 +456,7 @@ var (
 	// ErrDuplicateNet describes an error where the parameters for a Litecoin
 	// network could not be set due to the network already being a standard
 	// network or previously-registered into this package.
-	ErrDuplicateNet = errors.New("duplicate Vertcoin network")
+	ErrDuplicateNet = errors.New("duplicate Zcoin network")
 
 	// ErrUnknownHDKeyID describes an error where the provided id which
 	// is intended to identify the network for a hierarchical deterministic
@@ -579,6 +579,6 @@ func newHashFromStr(hexStr string) *chainhash.Hash {
 
 func init() {
 	// Register all default networks when the package is initialized.
-	mustRegister(&VertcoinParams)
-	mustRegister(&VertcoinTestNetParams)
+	mustRegister(&ZcoinParams)
+	mustRegister(&ZcoinTestNetParams)
 }

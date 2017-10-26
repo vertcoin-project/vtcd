@@ -27,7 +27,7 @@ type params struct {
 // it does not handle on to xzcd.  This approach allows the wallet process
 // to emulate the full reference implementation RPC API.
 var mainNetParams = params{
-	Params:  &chaincfg.VertcoinParams,
+	Params:  &chaincfg.ZcoinParams,
 	rpcPort: "5888",
 }
 
@@ -35,7 +35,7 @@ var mainNetParams = params{
 // (wire.TestNet4).  NOTE: The RPC port is intentionally different than the
 // reference implementation - see the mainNetParams comment for details.
 var testNet4Params = params{
-	Params:  &chaincfg.VertcoinTestNetParams,
+	Params:  &chaincfg.ZcoinTestNetParams,
 	rpcPort: "15888",
 }
 

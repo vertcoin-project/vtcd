@@ -771,7 +771,7 @@ func (r FutureAddMultisigAddressResult) Receive() (xzcutil.Address, error) {
 		return nil, err
 	}
 
-	return xzcutil.DecodeAddress(addr, &chaincfg.VertcoinParams)
+	return xzcutil.DecodeAddress(addr, &chaincfg.ZcoinParams)
 }
 
 // AddMultisigAddressAsync returns an instance of a type that can be used to get
@@ -885,7 +885,7 @@ func (r FutureGetNewAddressResult) Receive() (xzcutil.Address, error) {
 		return nil, err
 	}
 
-	return xzcutil.DecodeAddress(addr, &chaincfg.VertcoinParams)
+	return xzcutil.DecodeAddress(addr, &chaincfg.ZcoinParams)
 }
 
 // GetNewAddressAsync returns an instance of a type that can be used to get the
@@ -923,7 +923,7 @@ func (r FutureGetRawChangeAddressResult) Receive() (xzcutil.Address, error) {
 		return nil, err
 	}
 
-	return xzcutil.DecodeAddress(addr, &chaincfg.VertcoinParams)
+	return xzcutil.DecodeAddress(addr, &chaincfg.ZcoinParams)
 }
 
 // GetRawChangeAddressAsync returns an instance of a type that can be used to
@@ -962,7 +962,7 @@ func (r FutureGetAccountAddressResult) Receive() (xzcutil.Address, error) {
 		return nil, err
 	}
 
-	return xzcutil.DecodeAddress(addr, &chaincfg.VertcoinParams)
+	return xzcutil.DecodeAddress(addr, &chaincfg.ZcoinParams)
 }
 
 // GetAccountAddressAsync returns an instance of a type that can be used to get
@@ -1068,7 +1068,7 @@ func (r FutureGetAddressesByAccountResult) Receive() ([]xzcutil.Address, error) 
 	addrs := make([]xzcutil.Address, 0, len(addrStrings))
 	for _, addrStr := range addrStrings {
 		addr, err := xzcutil.DecodeAddress(addrStr,
-			&chaincfg.VertcoinParams)
+			&chaincfg.ZcoinParams)
 		if err != nil {
 			return nil, err
 		}
