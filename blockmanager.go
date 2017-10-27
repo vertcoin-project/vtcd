@@ -11,14 +11,14 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/vertcoin/vtcd/blockchain"
-	"github.com/vertcoin/vtcd/chaincfg"
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/database"
-	"github.com/vertcoin/vtcd/mempool"
-	peerpkg "github.com/vertcoin/vtcd/peer"
-	"github.com/vertcoin/vtcd/wire"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/blockchain"
+	"github.com/devwarrior777/xzcd/chaincfg"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/database"
+	"github.com/devwarrior777/xzcd/mempool"
+	peerpkg "github.com/devwarrior777/xzcd/peer"
+	"github.com/devwarrior777/xzcd/wire"
+	"github.com/devwarrior777/xzcutil"
 )
 
 const (
@@ -56,7 +56,7 @@ type newPeerMsg struct {
 // blockMsg packages a bitcoin block message and the peer it came from together
 // so the block handler has access to that information.
 type blockMsg struct {
-	block *vtcutil.Block
+	block *xzcutil.Block
 	peer  *peerpkg.Peer
 	reply chan struct{}
 }
@@ -83,7 +83,7 @@ type donePeerMsg struct {
 // txMsg packages a bitcoin tx message and the peer it came from together
 // so the block handler has access to that information.
 type txMsg struct {
-	tx    *vtcutil.Tx
+	tx    *xzcutil.Tx
 	peer  *peerpkg.Peer
 	reply chan struct{}
 }
@@ -107,7 +107,7 @@ type processBlockResponse struct {
 // extra handling whereas this message essentially is just a concurrent safe
 // way to call ProcessBlock on the internal block chain instance.
 type processBlockMsg struct {
-	block *vtcutil.Block
+	block *xzcutil.Block
 	flags blockchain.BehaviorFlags
 	reply chan processBlockResponse
 }
@@ -143,7 +143,7 @@ type PeerNotifier interface {
 
 	RelayInventory(invVect *wire.InvVect, data interface{})
 
-	TransactionConfirmed(tx *vtcutil.Tx)
+	TransactionConfirmed(tx *xzcutil.Tx)
 }
 
 // blockManangerConfig is a configuration struct used to initialize a new
@@ -1241,7 +1241,7 @@ func (b *blockManager) handleBlockchainNotification(notification *blockchain.Not
 			return
 		}
 
-		block, ok := notification.Data.(*vtcutil.Block)
+		block, ok := notification.Data.(*xzcutil.Block)
 		if !ok {
 			bmgrLog.Warnf("Chain accepted notification is not a block.")
 			break
@@ -1253,7 +1253,7 @@ func (b *blockManager) handleBlockchainNotification(notification *blockchain.Not
 
 	// A block has been connected to the main block chain.
 	case blockchain.NTBlockConnected:
-		block, ok := notification.Data.(*vtcutil.Block)
+		block, ok := notification.Data.(*xzcutil.Block)
 		if !ok {
 			bmgrLog.Warnf("Chain connected notification is not a block.")
 			break
@@ -1277,7 +1277,7 @@ func (b *blockManager) handleBlockchainNotification(notification *blockchain.Not
 
 	// A block has been disconnected from the main block chain.
 	case blockchain.NTBlockDisconnected:
-		block, ok := notification.Data.(*vtcutil.Block)
+		block, ok := notification.Data.(*xzcutil.Block)
 		if !ok {
 			bmgrLog.Warnf("Chain disconnected notification is not a block.")
 			break
@@ -1310,7 +1310,7 @@ func (b *blockManager) NewPeer(peer *peerpkg.Peer) {
 // QueueTx adds the passed transaction message and peer to the block handling
 // queue. Responds to the done channel argument after the tx message is
 // processed.
-func (b *blockManager) QueueTx(tx *vtcutil.Tx, peer *peerpkg.Peer, done chan struct{}) {
+func (b *blockManager) QueueTx(tx *xzcutil.Tx, peer *peerpkg.Peer, done chan struct{}) {
 	// Don't accept more transactions if we're shutting down.
 	if atomic.LoadInt32(&b.shutdown) != 0 {
 		done <- struct{}{}
@@ -1323,7 +1323,7 @@ func (b *blockManager) QueueTx(tx *vtcutil.Tx, peer *peerpkg.Peer, done chan str
 // QueueBlock adds the passed block message and peer to the block handling
 // queue. Responds to the done channel argument after the block message is
 // processed.
-func (b *blockManager) QueueBlock(block *vtcutil.Block, peer *peerpkg.Peer, done chan struct{}) {
+func (b *blockManager) QueueBlock(block *xzcutil.Block, peer *peerpkg.Peer, done chan struct{}) {
 	// Don't accept more blocks if we're shutting down.
 	if atomic.LoadInt32(&b.shutdown) != 0 {
 		done <- struct{}{}
@@ -1403,7 +1403,7 @@ func (b *blockManager) SyncPeerID() int32 {
 // ProcessBlock makes use of ProcessBlock on an internal instance of a block
 // chain.  It is funneled through the block manager since btcchain is not safe
 // for concurrent access.
-func (b *blockManager) ProcessBlock(block *vtcutil.Block, flags blockchain.BehaviorFlags) (bool, error) {
+func (b *blockManager) ProcessBlock(block *xzcutil.Block, flags blockchain.BehaviorFlags) (bool, error) {
 	reply := make(chan processBlockResponse, 1)
 	b.msgChan <- processBlockMsg{block: block, flags: flags, reply: reply}
 	response := <-reply

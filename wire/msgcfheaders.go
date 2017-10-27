@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"io"
 
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
 )
 
 const (

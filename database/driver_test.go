@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"testing"
 
-	"github.com/vertcoin/vtcd/database"
-	_ "github.com/vertcoin/vtcd/database/ffldb"
+	"github.com/devwarrior777/xzcd/database"
+	_ "github.com/devwarrior777/xzcd/database/ffldb"
 )
 
 var (

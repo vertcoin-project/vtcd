@@ -7,7 +7,7 @@ package blockchain
 import (
 	"testing"
 
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
 )
 
 // TestThresholdStateStringer tests the stringized output for the

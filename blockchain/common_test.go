@@ -14,13 +14,13 @@ import (
 	"strings"
 	"time"
 
-	"github.com/vertcoin/vtcd/chaincfg"
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/database"
-	_ "github.com/vertcoin/vtcd/database/ffldb"
-	"github.com/vertcoin/vtcd/txscript"
-	"github.com/vertcoin/vtcd/wire"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/chaincfg"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/database"
+	_ "github.com/devwarrior777/xzcd/database/ffldb"
+	"github.com/devwarrior777/xzcd/txscript"
+	"github.com/devwarrior777/xzcd/wire"
+	"github.com/devwarrior777/xzcutil"
 )
 
 const (
@@ -59,8 +59,8 @@ func isSupportedDbType(dbType string) bool {
 
 // loadBlocks reads files containing bitcoin block data (gzipped but otherwise
 // in the format bitcoind writes) from disk and returns them as an array of
-// vtcutil.Block.  This is largely borrowed from the test code in ltcdb.
-func loadBlocks(filename string) (blocks []*vtcutil.Block, err error) {
+// xzcutil.Block.  This is largely borrowed from the test code in ltcdb.
+func loadBlocks(filename string) (blocks []*xzcutil.Block, err error) {
 	filename = filepath.Join("testdata/", filename)
 
 	var network = wire.MainNet
@@ -79,7 +79,7 @@ func loadBlocks(filename string) (blocks []*vtcutil.Block, err error) {
 	}
 	defer fi.Close()
 
-	var block *vtcutil.Block
+	var block *xzcutil.Block
 
 	err = nil
 	for height := int64(1); err == nil; height++ {
@@ -105,7 +105,7 @@ func loadBlocks(filename string) (blocks []*vtcutil.Block, err error) {
 		// read block
 		dr.Read(rbytes)
 
-		block, err = vtcutil.NewBlockFromBytes(rbytes)
+		block, err = xzcutil.NewBlockFromBytes(rbytes)
 		if err != nil {
 			return
 		}

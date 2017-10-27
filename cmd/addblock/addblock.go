@@ -9,10 +9,10 @@ import (
 	"path/filepath"
 	"runtime"
 
-	"github.com/vertcoin/vtcd/blockchain"
-	"github.com/vertcoin/vtcd/blockchain/indexers"
-	"github.com/vertcoin/vtcd/database"
-	"github.com/vertcoin/vtcd/limits"
+	"github.com/devwarrior777/xzcd/blockchain"
+	"github.com/devwarrior777/xzcd/blockchain/indexers"
+	"github.com/devwarrior777/xzcd/database"
+	"github.com/devwarrior777/xzcd/limits"
 	"github.com/btcsuite/btclog"
 )
 

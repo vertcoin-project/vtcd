@@ -17,7 +17,7 @@ import (
 	"log"
 	"os"
 
-	"github.com/vertcoin/vtcd/btcec"
+	"github.com/devwarrior777/xzcd/btcec"
 )
 
 func main() {

@@ -3,22 +3,22 @@
 // license that can be found in the LICENSE file.
 
 /*
-vtcd is a full-node bitcoin implementation written in Go.
+xzcd is a full-node bitcoin implementation written in Go.
 
-The default options are sane for most users.  This means vtcd will work 'out of
+The default options are sane for most users.  This means xzcd will work 'out of
 the box' for most users.  However, there are also a wide variety of flags that
 can be used to control it.
 
 The following section provides a usage overview which enumerates the flags.  An
 interesting point to note is that the long form of all of these options
 (except -C) can be specified in a configuration file that is automatically
-parsed when vtcd starts up.  By default, the configuration file is located at
-~/.vtcd/vtcd.conf on POSIX-style operating systems and %LOCALAPPDATA%\vtcd\vtcd.conf
+parsed when xzcd starts up.  By default, the configuration file is located at
+~/.xzcd/xzcd.conf on POSIX-style operating systems and %LOCALAPPDATA%\xzcd\xzcd.conf
 on Windows.  The -C (--configfile) flag, as shown below, can be used to override
 this location.
 
 Usage:
-  vtcd [OPTIONS]
+  xzcd [OPTIONS]
 
 Application Options:
   -V, --version             Display version information and exit

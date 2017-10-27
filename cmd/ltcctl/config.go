@@ -14,8 +14,8 @@ import (
 	"strings"
 
 	flags "github.com/jessevdk/go-flags"
-	"github.com/vertcoin/vtcd/btcjson"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/btcjson"
+	"github.com/devwarrior777/xzcutil"
 )
 
 const (
@@ -26,9 +26,9 @@ const (
 )
 
 var (
-	ltcdHomeDir           = vtcutil.AppDataDir("ltcd", false)
-	ltcctlHomeDir         = vtcutil.AppDataDir("ltcctl", false)
-	ltcwalletHomeDir      = vtcutil.AppDataDir("ltcwallet", false)
+	ltcdHomeDir           = xzcutil.AppDataDir("ltcd", false)
+	ltcctlHomeDir         = xzcutil.AppDataDir("ltcctl", false)
+	ltcwalletHomeDir      = xzcutil.AppDataDir("ltcwallet", false)
 	defaultConfigFile     = filepath.Join(ltcctlHomeDir, "ltcctl.conf")
 	defaultRPCServer      = "localhost"
 	defaultRPCCertFile    = filepath.Join(ltcdHomeDir, "rpc.cert")

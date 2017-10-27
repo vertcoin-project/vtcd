@@ -20,16 +20,16 @@ func TestCreateDefaultConfigFile(t *testing.T) {
 	if !ok {
 		t.Fatalf("Failed finding config file path")
 	}
-	sampleConfigFile := filepath.Join(filepath.Dir(path), "sample-vtcd.conf")
+	sampleConfigFile := filepath.Join(filepath.Dir(path), "sample-xzcd.conf")
 
 	// Setup a temporary directory
-	tmpDir, err := ioutil.TempDir("", "vtcd")
+	tmpDir, err := ioutil.TempDir("", "xzcd")
 	if err != nil {
 		t.Fatalf("Failed creating a temporary directory: %v", err)
 	}
 	testpath := filepath.Join(tmpDir, "test.conf")
 
-	// copy config file to location of vtcd binary
+	// copy config file to location of xzcd binary
 	data, err := ioutil.ReadFile(sampleConfigFile)
 	if err != nil {
 		t.Fatalf("Failed reading sample config file: %v", err)
@@ -38,7 +38,7 @@ func TestCreateDefaultConfigFile(t *testing.T) {
 	if err != nil {
 		t.Fatalf("Failed obtaining app path: %v", err)
 	}
-	tmpConfigFile := filepath.Join(appPath, "sample-vtcd.conf")
+	tmpConfigFile := filepath.Join(appPath, "sample-xzcd.conf")
 	err = ioutil.WriteFile(tmpConfigFile, data, 0644)
 	if err != nil {
 		t.Fatalf("Failed copying sample config file: %v", err)

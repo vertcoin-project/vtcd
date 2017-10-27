@@ -10,15 +10,15 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/vertcoin/vtcd/blockchain"
-	"github.com/vertcoin/vtcd/btcec"
-	"github.com/vertcoin/vtcd/chaincfg"
-	"github.com/vertcoin/vtcd/chaincfg/chainhash"
-	"github.com/vertcoin/vtcd/rpcclient"
-	"github.com/vertcoin/vtcd/txscript"
-	"github.com/vertcoin/vtcd/wire"
-	"github.com/vertcoin/vtcutil"
-	"github.com/vertcoin/vtcutil/hdkeychain"
+	"github.com/devwarrior777/xzcd/blockchain"
+	"github.com/devwarrior777/xzcd/btcec"
+	"github.com/devwarrior777/xzcd/chaincfg"
+	"github.com/devwarrior777/xzcd/chaincfg/chainhash"
+	"github.com/devwarrior777/xzcd/rpcclient"
+	"github.com/devwarrior777/xzcd/txscript"
+	"github.com/devwarrior777/xzcd/wire"
+	"github.com/devwarrior777/xzcutil"
+	"github.com/devwarrior777/xzcutil/hdkeychain"
 )
 
 var (
@@ -38,7 +38,7 @@ var (
 // maturity period of direct coinbase outputs.
 type utxo struct {
 	pkScript       []byte
-	value          vtcutil.Amount
+	value          xzcutil.Amount
 	keyIndex       uint32
 	maturityHeight int32
 	isLocked       bool
@@ -55,7 +55,7 @@ func (u *utxo) isMature(height int32) bool {
 // chain.
 type chainUpdate struct {
 	blockHeight  int32
-	filteredTxns []*vtcutil.Tx
+	filteredTxns []*xzcutil.Tx
 }
 
 // undoEntry is functionally the opposite of a chainUpdate. An undoEntry is
@@ -71,7 +71,7 @@ type undoEntry struct {
 // hierarchy which promotes reproducibility between harness test runs.
 type memWallet struct {
 	coinbaseKey  *btcec.PrivateKey
-	coinbaseAddr vtcutil.Address
+	coinbaseAddr xzcutil.Address
 
 	// hdRoot is the root master private key for the wallet.
 	hdRoot *hdkeychain.ExtendedKey
@@ -85,7 +85,7 @@ type memWallet struct {
 
 	// addrs tracks all addresses belonging to the wallet. The addresses
 	// are indexed by their keypath from the hdRoot.
-	addrs map[uint32]vtcutil.Address
+	addrs map[uint32]xzcutil.Address
 
 	// utxos is the set of utxos spendable by the wallet.
 	utxos map[wire.OutPoint]*utxo
@@ -139,7 +139,7 @@ func newMemWallet(net *chaincfg.Params, harnessID uint32) (*memWallet, error) {
 
 	// Track the coinbase generation address to ensure we properly track
 	// newly generated bitcoin we can spend.
-	addrs := make(map[uint32]vtcutil.Address)
+	addrs := make(map[uint32]xzcutil.Address)
 	addrs[0] = coinbaseAddr
 
 	return &memWallet{
@@ -178,7 +178,7 @@ func (m *memWallet) SetRPCClient(rpcClient *rpcclient.Client) {
 // IngestBlock is a call-back which is to be triggered each time a new block is
 // connected to the main chain. Ingesting a block updates the wallet's internal
 // utxo state based on the outputs created and destroyed within each block.
-func (m *memWallet) IngestBlock(height int32, header *wire.BlockHeader, filteredTxns []*vtcutil.Tx) {
+func (m *memWallet) IngestBlock(height int32, header *wire.BlockHeader, filteredTxns []*xzcutil.Tx) {
 	// Append this new chain update to the end of the queue of new chain
 	// updates.
 	m.chainMtx.Lock()
@@ -259,7 +259,7 @@ func (m *memWallet) evalOutputs(outputs []*wire.TxOut, txHash *chainhash.Hash,
 
 			op := wire.OutPoint{Hash: *txHash, Index: uint32(i)}
 			m.utxos[op] = &utxo{
-				value:          vtcutil.Amount(output.Value),
+				value:          xzcutil.Amount(output.Value),
 				keyIndex:       keyIndex,
 				maturityHeight: maturityHeight,
 				pkScript:       pkScript,
@@ -307,7 +307,7 @@ func (m *memWallet) UnwindBlock(height int32, header *wire.BlockHeader) {
 // newAddress returns a new address from the wallet's hd key chain.  It also
 // loads the address into the RPC client's transaction filter to ensure any
 // transactions that involve it are delivered via the notifications.
-func (m *memWallet) newAddress() (vtcutil.Address, error) {
+func (m *memWallet) newAddress() (xzcutil.Address, error) {
 	index := m.hdIndex
 
 	childKey, err := m.hdRoot.Child(index)
@@ -324,7 +324,7 @@ func (m *memWallet) newAddress() (vtcutil.Address, error) {
 		return nil, err
 	}
 
-	err = m.rpc.LoadTxFilter(false, []vtcutil.Address{addr}, nil)
+	err = m.rpc.LoadTxFilter(false, []xzcutil.Address{addr}, nil)
 	if err != nil {
 		return nil, err
 	}
@@ -339,7 +339,7 @@ func (m *memWallet) newAddress() (vtcutil.Address, error) {
 // NewAddress returns a fresh address spendable by the wallet.
 //
 // This function is safe for concurrent access.
-func (m *memWallet) NewAddress() (vtcutil.Address, error) {
+func (m *memWallet) NewAddress() (xzcutil.Address, error) {
 	m.Lock()
 	defer m.Unlock()
 
@@ -352,7 +352,7 @@ func (m *memWallet) NewAddress() (vtcutil.Address, error) {
 // satoshis-per-byte.
 //
 // NOTE: The memWallet's mutex must be held when this function is called.
-func (m *memWallet) fundTx(tx *wire.MsgTx, amt vtcutil.Amount, feeRate vtcutil.Amount) error {
+func (m *memWallet) fundTx(tx *wire.MsgTx, amt xzcutil.Amount, feeRate xzcutil.Amount) error {
 	const (
 		// spendSize is the largest number of bytes of a sigScript
 		// which spends a p2pkh output: OP_DATA_73 <sig> OP_DATA_33 <pubkey>
@@ -360,7 +360,7 @@ func (m *memWallet) fundTx(tx *wire.MsgTx, amt vtcutil.Amount, feeRate vtcutil.A
 	)
 
 	var (
-		amtSelected vtcutil.Amount
+		amtSelected xzcutil.Amount
 		txSize      int
 	)
 
@@ -383,7 +383,7 @@ func (m *memWallet) fundTx(tx *wire.MsgTx, amt vtcutil.Amount, feeRate vtcutil.A
 		// observing the specified fee rate. If we don't have enough
 		// coins from he current amount selected to pay the fee, then
 		// continue to grab more coins.
-		reqFee := vtcutil.Amount(txSize * int(feeRate))
+		reqFee := xzcutil.Amount(txSize * int(feeRate))
 		if amtSelected-reqFee < amt {
 			continue
 		}
@@ -419,7 +419,7 @@ func (m *memWallet) fundTx(tx *wire.MsgTx, amt vtcutil.Amount, feeRate vtcutil.A
 // while observing the passed fee rate. The passed fee rate should be expressed
 // in satoshis-per-byte.
 func (m *memWallet) SendOutputs(outputs []*wire.TxOut,
-	feeRate vtcutil.Amount) (*chainhash.Hash, error) {
+	feeRate xzcutil.Amount) (*chainhash.Hash, error) {
 
 	tx, err := m.CreateTransaction(outputs, feeRate)
 	if err != nil {
@@ -434,7 +434,7 @@ func (m *memWallet) SendOutputs(outputs []*wire.TxOut,
 // expressed in satoshis-per-byte.
 //
 // This function is safe for concurrent access.
-func (m *memWallet) CreateTransaction(outputs []*wire.TxOut, feeRate vtcutil.Amount) (*wire.MsgTx, error) {
+func (m *memWallet) CreateTransaction(outputs []*wire.TxOut, feeRate xzcutil.Amount) (*wire.MsgTx, error) {
 	m.Lock()
 	defer m.Unlock()
 
@@ -442,9 +442,9 @@ func (m *memWallet) CreateTransaction(outputs []*wire.TxOut, feeRate vtcutil.Amo
 
 	// Tally up the total amount to be sent in order to perform coin
 	// selection shortly below.
-	var outputAmt vtcutil.Amount
+	var outputAmt xzcutil.Amount
 	for _, output := range outputs {
-		outputAmt += vtcutil.Amount(output.Value)
+		outputAmt += xzcutil.Amount(output.Value)
 		tx.AddTxOut(output)
 	}
 
@@ -514,11 +514,11 @@ func (m *memWallet) UnlockOutputs(inputs []*wire.TxIn) {
 // ConfirmedBalance returns the confirmed balance of the wallet.
 //
 // This function is safe for concurrent access.
-func (m *memWallet) ConfirmedBalance() vtcutil.Amount {
+func (m *memWallet) ConfirmedBalance() xzcutil.Amount {
 	m.RLock()
 	defer m.RUnlock()
 
-	var balance vtcutil.Amount
+	var balance xzcutil.Amount
 	for _, utxo := range m.utxos {
 		// Prevent any immature or locked outputs from contributing to
 		// the wallet's total confirmed balance.
@@ -533,9 +533,9 @@ func (m *memWallet) ConfirmedBalance() vtcutil.Amount {
 }
 
 // keyToAddr maps the passed private to corresponding p2pkh address.
-func keyToAddr(key *btcec.PrivateKey, net *chaincfg.Params) (vtcutil.Address, error) {
+func keyToAddr(key *btcec.PrivateKey, net *chaincfg.Params) (xzcutil.Address, error) {
 	serializedKey := key.PubKey().SerializeCompressed()
-	pubKeyAddr, err := vtcutil.NewAddressPubKey(serializedKey, net)
+	pubKeyAddr, err := xzcutil.NewAddressPubKey(serializedKey, net)
 	if err != nil {
 		return nil, err
 	}

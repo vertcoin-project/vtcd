@@ -5,8 +5,8 @@
 package blockchain
 
 import (
-	"github.com/vertcoin/vtcd/database"
-	"github.com/vertcoin/vtcutil"
+	"github.com/devwarrior777/xzcd/database"
+	"github.com/devwarrior777/xzcutil"
 )
 
 // maybeAcceptBlock potentially accepts a block into the block chain and, if
@@ -23,7 +23,7 @@ import (
 // their documentation for how the flags modify their behavior.
 //
 // This function MUST be called with the chain state lock held (for writes).
-func (b *BlockChain) maybeAcceptBlock(block *vtcutil.Block, flags BehaviorFlags) (bool, error) {
+func (b *BlockChain) maybeAcceptBlock(block *xzcutil.Block, flags BehaviorFlags) (bool, error) {
 	dryRun := flags&BFDryRun == BFDryRun
 
 	// The height of this block is one more than the referenced previous

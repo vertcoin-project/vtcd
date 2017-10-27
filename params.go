@@ -5,8 +5,8 @@
 package main
 
 import (
-	"github.com/vertcoin/vtcd/chaincfg"
-	"github.com/vertcoin/vtcd/wire"
+	"github.com/devwarrior777/xzcd/chaincfg"
+	"github.com/devwarrior777/xzcd/wire"
 )
 
 // activeNetParams is a pointer to the parameters specific to the
@@ -22,12 +22,12 @@ type params struct {
 
 // mainNetParams contains parameters specific to the main network
 // (wire.MainNet).  NOTE: The RPC port is intentionally different than the
-// reference implementation because vtcd does not handle wallet requests.  The
+// reference implementation because xzcd does not handle wallet requests.  The
 // separate wallet process listens on the well-known port and forwards requests
-// it does not handle on to vtcd.  This approach allows the wallet process
+// it does not handle on to xzcd.  This approach allows the wallet process
 // to emulate the full reference implementation RPC API.
 var mainNetParams = params{
-	Params:  &chaincfg.VertcoinParams,
+	Params:  &chaincfg.ZcoinParams,
 	rpcPort: "5888",
 }
 
@@ -35,7 +35,7 @@ var mainNetParams = params{
 // (wire.TestNet4).  NOTE: The RPC port is intentionally different than the
 // reference implementation - see the mainNetParams comment for details.
 var testNet4Params = params{
-	Params:  &chaincfg.VertcoinTestNetParams,
+	Params:  &chaincfg.ZcoinTestNetParams,
 	rpcPort: "15888",
 }
 
@@ -49,7 +49,7 @@ var regressionNetParams = params{
 }
 
 // netName returns the name used when referring to a bitcoin network.  At the
-// time of writing, vtcd currently places blocks for testnet version 3 in the
+// time of writing, xzcd currently places blocks for testnet version 3 in the
 // data and log directory "testnet", which does not match the Name field of the
 // chaincfg parameters.  This function can be used to override this directory
 // name as "testnet" when the passed active network matches wire.TestNet4.
